@@ -21,15 +21,15 @@
 using namespace std;
 template <typename T>
 
-class polygone {
+class Polygone {
 protected:
     vector<point2d<T>> sommets;
 public:
-    polygone() = default;
+    Polygone() = default;
+    
+    Polygone(const vector<point2d<T>>& ListeSommet) : sommets(ListeSommet) {}
 
-    polygone(const vector<point2d<T>>& ListeSommet) : sommets(ListeSommet) {}
-
-    polygone(const polygone<T>& poly) : sommets(poly.sommets) {}
+    Polygone(const Polygone<T>& poly) : sommets(poly.sommets) {}
 
     const vector<point2d<T>>& getSommets() const {
         return sommets;
