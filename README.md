@@ -51,7 +51,7 @@ make
 
 ---
 
-### Polygone
+### Classe Polygone
 
 #### Description
 
@@ -62,20 +62,7 @@ make
 
 #### Tests
 
-### Parcelle
-
-#### Description
-
-#### code
-```cpp
-
-```
-
-#### Tests
-
----
-
-### Constructible
+### Classe Parcelle
 
 #### Description
 
@@ -88,7 +75,7 @@ make
 
 ---
 
-### zu
+### Classe Constructible
 
 #### Description
 
@@ -101,7 +88,7 @@ make
 
 ---
 
-### zau
+### Classe zu
 
 #### Description
 
@@ -114,7 +101,7 @@ make
 
 ---
 
-### zn
+### Classe zau
 
 #### Description
 
@@ -127,7 +114,7 @@ make
 
 ---
 
-### za
+### Classe zn
 
 #### Description
 
@@ -140,7 +127,20 @@ make
 
 ---
 
-### carte
+### Classe za
+
+#### Description
+
+#### code
+```cpp
+
+```
+
+#### Tests
+
+---
+
+### Classe carte
 
 #### Description
 
