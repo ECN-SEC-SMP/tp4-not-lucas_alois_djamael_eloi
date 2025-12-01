@@ -16,14 +16,19 @@
 
 Zau::Zau(int num, string proprio, Polygone<int> forme)
 {
-	string _type = "ZU";
 	Parcelle(num, proprio, forme);
-	this->setType(_type);
+	this->setType("ZAU");
 }
 
 
-Zau::float surfaceConstructible()
+float Zau::surfaceConstructible()
 {
 	return this->pConstructible * this->getSurface();
+}
+
+void Zau::setType(string _type)
+{
+	_type = "ZAU";
+	this->type = _type;
 }
 	
