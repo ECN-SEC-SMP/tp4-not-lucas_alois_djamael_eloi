@@ -12,3 +12,18 @@
  * @copyright Copyright (c) 2025
  * 
  */
+#include "zau.hpp"
+
+Zau::Zau(int num, string proprio, Polygone<int> forme)
+{
+	string _type = "ZU";
+	Parcelle(num, proprio, forme);
+	this->setType(_type);
+}
+
+
+Zau::float surfaceConstructible()
+{
+	return this->pConstructible * this->getSurface();
+}
+	

@@ -68,4 +68,7 @@ public:
         if (s <= 0) throw invalid_argument("ajout invalide : surface négative ou nulle");
         return s;
     }
+
+    //destructeur
+    ~Polygone() = default;
 };
