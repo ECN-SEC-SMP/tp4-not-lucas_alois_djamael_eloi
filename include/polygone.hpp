@@ -16,30 +16,30 @@
 #pragma once
 
 #include <vector>
-#include "point2d.hpp"
+#include "Point2D.hpp"
 
 using namespace std;
 
 template <typename T>
 class Polygone {
 protected:
-    vector<point2d<T>> sommets;
+    vector<Point2D<T>> sommets;
 public:
     Polygone() = default;
     
-    Polygone(const vector<point2d<T>>& ListeSommet) : sommets(ListeSommet) {}
+    Polygone(const vector<Point2D<T>>& ListeSommet) : sommets(ListeSommet) {}
 
     Polygone(const Polygone<T>& poly) : sommets(poly.sommets) {}
 
-    const vector<point2d<T>>& getSommets() const {
+    const vector<Point2D<T>>& getSommets() const {
         return sommets;
     }
 
-    void setSommets(const vector<point2d<T>>& listeSommets) {
+    void setSommets(const vector<Point2D<T>>& listeSommets) {
         sommets = listeSommets;
     }
 
-    void addPoint(const point2d<T>& p) {
+    void addPoint(const Point2D<T>& p) {
         sommets.push_back(p);
     }
 
@@ -48,4 +48,12 @@ public:
             sommet.translate(dx, dy);
         }
     }
+
+    // Surcharge de l'opérateur << pour afficher de cette maniere [x1,y1] [x2,y2] ...
+    friend ostream& operator<<(ostream& os, const Polygone<T>& poly) {
+        for (const auto& sommet : poly.sommets) {
+            os << "[" << sommet.getX() << ";" << sommet.getY() << "] ";
+        }
+        return os;
+}
 };

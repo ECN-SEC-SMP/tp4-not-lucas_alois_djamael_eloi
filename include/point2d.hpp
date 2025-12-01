@@ -22,70 +22,53 @@
 using namespace std;
 
 template <typename T>
-std::ostream& operator<<(std::ostream &, Point2D<T> const&);
-
-template <typename T>
 class Point2D {
-	protected:
-		T x;
-		T y;
-	public:
-		Point2D(T x, T y);
-		Point2D(Point2D const & point2d);
-		Point2D();
-		T getx();
-		T gety();
-		void setx(T x);
-		void sety(T y);
-		void translater(T a, T b);
-};
+protected:
+	T x;
+	T y;
+public:
 
-template <typename T>
-Point2D<T>::Point2D(T x, T y){
+Point2D(T x, T y){
 	this->x = x;
 	this->y = y;
 }
 
-template <typename T>
-Point2D<T>::Point2D(Point2D const & point2d){
-	this->x = x->point2d;
-	this->y = y->point2d;
-}
-
-template <typename T>
-Point2D<T>::Point2D(){
+Point2D(){
 	this->x = static_cast<T>(0);
 	this->y = static_cast<T>(0);
 }
 
-template <typename T>
-T Point2D<T>::getx(){
-	return this->x;
+Point2D(Point2D const & point2d){
+	this->x = point2d.x;
+	this->y = point2d.y;
 }
 
-template <typename T>
-T Point2D<T>::gety(){
+T getX() const {
+	return this->x;
+}
+	
+T getY() const {
 	return this->y;
 }
 
-template <typename T>
-void Point2D<T>::setx(T x){
+void setX(T x){
 	this->x = x;
 }
 
-template <typename T>
-void Point2D<T>::sety(T y){
+void setY(T y){
 	this->y = y;
 }
 
-template <typename T>
-void Point2D<T>::translater(T a, T b){
+void translate(T a, T b){
 	this->x += a;
 	this->y += b;
-	
-friend std::ostream& operator<< <T>(std::ostream &, Point2D const&);
-
 }
+	
+// Surcharge de l'opérateur <<
+friend ostream& operator<<(ostream& os, const Point2D<T>& point) {
+	os << "(" << point.x << ", " << point.y << ")";
+	return os;
+}
+};
 
 #endif
-
