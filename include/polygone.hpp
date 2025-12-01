@@ -1,5 +1,5 @@
 /**
- * @file main.cpp
+ * @file polygone.hpp
  * @author Eloi Tourangin (eloi.tourangin@eleves.ec-nantes.fr)
  * @author Lucas Oros (lucas.oros@eleves.ec-nantes.fr)
  * @author Djamael Lahamion (djamael.lahamion@eleves.ec-nantes.fr)
@@ -12,10 +12,3 @@
  * @copyright Copyright (c) 2025
  * 
  */
-
-#include <iostream>
-
-int main() {
-
-    return 0;
-}

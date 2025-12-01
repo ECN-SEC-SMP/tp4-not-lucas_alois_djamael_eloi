@@ -1,11 +1,11 @@
 
 # TP4 - TP noté
 
-- SEC 2
+SEC 2
 - Eloi Tourangin - eloi.tourangin@eleves.ec-nantes.fr
-- Lucas
-- Djamael
-- Aloïs
+- Lucas Oros - lucas.oros@eleves.ec-nantes.fr
+- Djamael Lahamion - djamael.lahamion@eleves.ec-nantes.fr
+- Aloïs Guillon - alois.guillon@eleves.ec-nantes.fr
 
 ## Table des matières
 
