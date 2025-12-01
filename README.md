@@ -64,7 +64,17 @@ La classe Polygone représente une figure géométrique définie par une série 
 
 #### code
 ```cpp
-
+-----------------------------------
+TP PLU - Test de la classe Polygone
+-----------------------------------
+Sommets du polygone initial :
+[0;0] [1;0] [1;1]
+Sommets du polygone copie :
+[0;0] [1;0] [1;1]
+Sommets du polygone copie apres translation de (2.0, 3.0) :
+[2;3] [3;3] [3;4]
+Verification que le polygone original na pas ete modifie :
+[0;0] [1;0] [1;1]
 ```
 
 #### Tests
