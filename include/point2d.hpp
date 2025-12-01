@@ -12,3 +12,10 @@
  * @copyright Copyright (c) 2025
  * 
  */
+
+#pragma once
+
+template <typename T>
+class point2d {
+    
+}

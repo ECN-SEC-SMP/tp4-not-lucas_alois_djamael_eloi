@@ -10,7 +10,7 @@ $(BUILDDIR)/main.out: $(BUILDDIR)/main.o | $(BUILDDIR)
 	g++ -o $@ $^
 
 # Build main.o
-$(BUILDDIR)/main.o: $(SRCDIR)/main.cpp | $(BUILDDIR)
+$(BUILDDIR)/main.o: $(SRCDIR)/main.cpp $(INCDIR)/point2d.hpp $(INCDIR)/polygone.hpp | $(BUILDDIR)
 	g++ -I$(INCDIR) -c $(SRCDIR)/main.cpp -o $(BUILDDIR)/main.o
 
 # Create build directory
