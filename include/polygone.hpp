@@ -49,11 +49,21 @@ public:
         }
     }
 
-    // Surcharge de l'opérateur << pour afficher de cette maniere [x1,y1] [x2,y2] ...
     friend ostream& operator<<(ostream& os, const Polygone<T>& poly) {
         for (const auto& sommet : poly.sommets) {
             os << "[" << sommet.getX() << ";" << sommet.getY() << "] ";
         }
-        return os;
-}
+    return os;
+    }
+
+    T CalculerSurface() const {
+        T surface_buff = 0;
+        size_t n = sommets.size();
+        for (size_t i = 0; i < n; ++i) {
+            const Point2D<T>& p1 = sommets[i];
+            const Point2D<T>& p2 = sommets[(i + 1) % n];
+            surface_buff += p1.getX() * p2.getY() - p2.getX() * p1.getY();
+        }
+        return abs(surface_buff) / static_cast<T>(2);
+    }
 };

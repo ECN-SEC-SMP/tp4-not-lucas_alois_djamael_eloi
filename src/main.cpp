@@ -31,25 +31,32 @@ int main() {
     Polygone<double> poly(listeSommets);
 
     //affichage des sommets avec getSommets
-    cout << "Sommets du polygone initial :" << endl;
+    cout << "Sommets du polygone initial : ";
     cout << poly << endl;
 
     //création par recopie
     Polygone<double> polyCopy(poly);
-    cout << "Sommets du polygone copie :" << endl;
+    cout << "Sommets du polygone copie : ";
     cout << polyCopy << endl;
 
     //translation du polygone polycopy avec translate
     double dx = 2.0;
     double dy = 3.0;
     polyCopy.translate(dx, dy);
-    cout << "Sommets du polygone copie apres translation de (2.0, 3.0) :" << endl;
+    cout << "Sommets du polygone copie apres translation de (2.0, 3.0) : ";
     cout << polyCopy << endl;
 
     //tester si Si un polygone est translaté, les Polygones construits par recopie ne doivent pas être translatés.
-    cout << "Verification que le polygone original na pas ete modifie :" << endl;
+    cout << "Verification que le polygone original na pas ete modifie : ";
     cout << poly << endl;
-    
+
+    //calcul de la surface avec surface 
+    cout << "\nCalcul de la surface du polygone 5 sommets (attendu: 0.75) :" << endl;
+    vector<Point2D<double>> listeSommets_5 = {Point2D<double>(0.0, 0.0), Point2D<double>(1.0, 0.0), Point2D<double>(1.0, 1.0), Point2D<double>(0.0, 1.0), Point2D<double>(0.5, 1.5)};
+    Polygone<double> poly5(listeSommets_5);
+    cout << "Sommets du polygone  : ";
+    cout << poly5 << endl;
+    cout << "Surface du polygone : " << poly5.CalculerSurface() << endl;
 
     return 0;
 }
