@@ -133,5 +133,5 @@ public:
      * @param p parcelle à afficher
      * @return ostream&
      */
-    friend ostream &operator<<(ostream &os, Carree<T> const &c);
+    friend ostream &operator<<(ostream &os, const Parcelle &p);
 };
