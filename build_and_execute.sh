@@ -1,6 +1,6 @@
 #!/bin/bash
 make clean
-make
+make all
 clear
 echo Execution du main :
 echo
