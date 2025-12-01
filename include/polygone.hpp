@@ -64,6 +64,8 @@ public:
             const Point2D<T>& p2 = sommets[(i + 1) % n];
             surface_buff += p1.getX() * p2.getY() - p2.getX() * p1.getY();
         }
-        return abs(surface_buff) / static_cast<T>(2);
+        T s =  abs(surface_buff) / static_cast<T>(2);
+        if (s <= 0) throw invalid_argument("ajout invalide : surface négative ou nulle");
+        return s;
     }
 };
