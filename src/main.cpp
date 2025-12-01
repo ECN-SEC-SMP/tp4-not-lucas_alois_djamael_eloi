@@ -56,7 +56,7 @@ int main() {
     Polygone<double> poly5(listeSommets_5);
     cout << "Sommets du polygone  : ";
     cout << poly5 << endl;
-    cout << "Surface du polygone : " << poly5.CalculerSurface() << endl;
+    cout << "Surface du polygone : " << poly5.calculerSurface() << endl;
 
     return 0;
 }

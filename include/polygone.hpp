@@ -56,7 +56,7 @@ public:
     return os;
     }
 
-    T CalculerSurface() const {
+    T calculerSurface() const {
         T surface_buff = 0;
         size_t n = sommets.size();
         for (size_t i = 0; i < n; ++i) {
