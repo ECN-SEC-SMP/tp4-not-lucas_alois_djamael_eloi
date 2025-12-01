@@ -12,3 +12,15 @@
  * @copyright Copyright (c) 2025
  * 
  */
+
+ #pragma once
+
+/**
+ * @brief Classe abstraite représentant un objet constructible
+ * 
+ */
+ class Constructible {
+    public:
+        virtual float surfaceConstructible() const = 0; // Fonction virtuelle pure
+ };
+ 
