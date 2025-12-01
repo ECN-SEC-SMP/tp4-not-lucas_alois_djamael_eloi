@@ -16,10 +16,36 @@
 #pragma once
 
 #include <vector>
-
 #include "point2d.hpp"
 
-template <typename T>
-class polygone {
+using namespace std;
 
-}
+template <typename T>
+class Polygone {
+protected:
+    vector<point2d<T>> sommets;
+public:
+    Polygone() = default;
+    
+    Polygone(const vector<point2d<T>>& ListeSommet) : sommets(ListeSommet) {}
+
+    Polygone(const Polygone<T>& poly) : sommets(poly.sommets) {}
+
+    const vector<point2d<T>>& getSommets() const {
+        return sommets;
+    }
+
+    void setSommets(const vector<point2d<T>>& listeSommets) {
+        sommets = listeSommets;
+    }
+
+    void addPoint(const point2d<T>& p) {
+        sommets.push_back(p);
+    }
+
+    void translate(const T& dx, const T& dy) {
+        for (auto& sommet : sommets) {
+            sommet.translate(dx, dy);
+        }
+    }
+};
