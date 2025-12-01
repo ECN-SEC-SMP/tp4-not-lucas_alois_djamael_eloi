@@ -59,79 +59,79 @@ public:
 
     /**
      * @brief Destroy the Parcelle object
-     * 
+     *
      */
     virtual ~Parcelle() = default;
 
     /**
      * @brief Get the Numero object
-     * 
+     *
      * @return int numéro de la parcelle
      */
     int getNumero();
 
     /**
      * @brief Get the Proprietaire object
-     * 
+     *
      * @return string propriétaire de la parcelle
      */
     string getProprietaire();
 
     /**
      * @brief Get the Surface object
-     * 
+     *
      * @return float surface de la parcelle
      */
     float getSurface();
 
     /**
      * @brief Get the Forme object
-     * 
+     *
      * @return Polygone<int> forme de la parcelle
      */
     Polygone<int> getForme();
 
     /**
      * @brief Get the Type object
-     * 
+     *
      * @return string type de la parcelle
      */
     string getType();
 
     /**
      * @brief Set the Numero object
-     * 
+     *
      * @param num numéro de la parcelle
      */
     void setNumero(int num);
 
     /**
      * @brief Set the Proprietaire object
-     * 
+     *
      * @param proprio propriétaire de la parcelle
      */
     void setProprietaire(string proprio);
 
     /**
      * @brief Set the Forme object
-     * 
+     *
      * @param forme forme de la parcelle
      */
     void setForme(Polygone<int> forme);
 
     /**
      * @brief Set the Type object
-     * 
+     *
      * @param type type de la parcelle
      */
     virtual void setType(string type) = 0; // Virtuel pure
 
     /**
      * @brief Affichage d'une parcelle
-     * 
+     *
      * @param os flux de sortie
      * @param p parcelle à afficher
-     * @return ostream& 
+     * @return ostream&
      */
     friend ostream &operator<<(ostream &os, Carree<T> const &c);
 };
