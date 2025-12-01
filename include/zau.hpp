@@ -12,3 +12,25 @@
  * @copyright Copyright (c) 2025
  * 
  */
+
+#ifndef zau_hpp
+#define zau_hpp
+
+#pragma once
+
+#include <iostream>
+#include "constructible.hpp"
+#include "parcelle.hpp"
+using namespace std;
+
+class Zau : public Constructible, public Parcelle{
+	private:
+		string type;
+		
+	public:
+		Zau(int num, string proprio, Polygone<int> forme);
+		float surfaceConstructible();
+		
+};
+
+#endif
