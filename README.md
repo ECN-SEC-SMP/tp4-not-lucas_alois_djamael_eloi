@@ -10,6 +10,8 @@ SEC 2
 ## Table des matières
 
 1. [Compilation et Exécution](#compilation-et-exécution)
+2. [Diagramme des classes](#diagramme-des-classes)
+3. [Description des classes](#description-des-classes)
 
 ---
 
@@ -30,3 +32,124 @@ make
 ```
 
 ---
+
+## Diagramme des classes
+![Diagramme des classes](diagramme_classes.png)
+
+## Description des classes
+
+### Classe Point2D
+
+#### Description
+
+#### code
+```cpp
+
+```
+
+#### Tests
+
+---
+
+### Polygone
+
+#### Description
+
+#### code
+```cpp
+
+```
+
+#### Tests
+
+### Parcelle
+
+#### Description
+
+#### code
+```cpp
+
+```
+
+#### Tests
+
+---
+
+### Constructible
+
+#### Description
+
+#### code
+```cpp
+
+```
+
+#### Tests
+
+---
+
+### zu
+
+#### Description
+
+#### code
+```cpp
+
+```
+
+#### Tests
+
+---
+
+### zau
+
+#### Description
+
+#### code
+```cpp
+
+```
+
+#### Tests
+
+---
+
+### zn
+
+#### Description
+
+#### code
+```cpp
+
+```
+
+#### Tests
+
+---
+
+### za
+
+#### Description
+
+#### code
+```cpp
+
+```
+
+#### Tests
+
+---
+
+### carte
+
+#### Description
+
+#### code
+```cpp
+
+```
+
+#### Tests
+
+---
+

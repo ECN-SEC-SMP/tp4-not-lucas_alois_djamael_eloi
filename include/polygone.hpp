@@ -19,8 +19,8 @@
 #include "point2d.hpp"
 
 using namespace std;
-template <typename T>
 
+template <typename T>
 class Polygone {
 protected:
     vector<point2d<T>> sommets;
