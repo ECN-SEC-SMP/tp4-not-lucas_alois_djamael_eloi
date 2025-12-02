@@ -44,7 +44,7 @@ float Zu::getSurfaceConstruite()
     return this->surfaceConstruite;
 }
 
-float Zu::surfaceConstructible()
+float Zu::surfaceConstructible() const
 {
 	return this->pConstructible * this->getSurface();
 }

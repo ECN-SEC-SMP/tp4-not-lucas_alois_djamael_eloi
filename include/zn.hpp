@@ -28,7 +28,7 @@ protected:
 	
 public:
 	Zn(int num, string proprio, Polygone<int> forme);
-	void setType(string type);
+	void setType(string type) override;
 };
 
 #endif

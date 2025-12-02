@@ -29,10 +29,10 @@ protected:
     
 public:
     Zu(int num, string proprio, Polygone<int> forme);
-    void setType(string type);
+    void setType(string type) override;
     void setSurfaceConstruite(float surfaceConstruite);
     float getSurfaceConstruite();
-    float surfaceConstructible(); //donne la surface constructible restante
+    float surfaceConstructible() const override; //donne la surface constructible restante
 };
 
 #endif

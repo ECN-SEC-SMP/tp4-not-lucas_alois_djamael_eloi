@@ -29,7 +29,7 @@ protected:
         
 public:
         Za(int num, string proprio, Polygone<int> forme, string typeCulture);
-        void setType(string type);
+        void setType(string type) override;
         string getTypeCulture() const;
         void setTypeCulture(string typeCulture);
         void peutConstruireBatAgricole();
