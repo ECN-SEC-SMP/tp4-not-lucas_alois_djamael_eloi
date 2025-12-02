@@ -25,7 +25,6 @@ using namespace std;
 
 class Zu : public Constructible, public Parcelle{
 	private:
-		string type;
         float surfaceConstruite; //une ZU a déjà une surface (en m2) construite.
 		
 	public:

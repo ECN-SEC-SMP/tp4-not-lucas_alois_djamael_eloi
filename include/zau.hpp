@@ -23,10 +23,7 @@
 #include "parcelle.hpp"
 using namespace std;
 
-class Zau : public Constructible, public Parcelle{
-	private:
-		string type;
-		
+class Zau : public Constructible, public Parcelle{	
 	public:
 		Zau(int num, string proprio, Polygone<int> forme);
 		void setType(string type);
