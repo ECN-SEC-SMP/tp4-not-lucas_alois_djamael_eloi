@@ -26,8 +26,9 @@ using namespace std;
 class Zau : public Constructible, public Parcelle{	
 public:
 	Zau(int num, string proprio, Polygone<int> forme);
-	void setType(string type);
-	float surfaceConstructible();
+	void setType(string type) override;
+	float surfaceConstructible() const override;
+	friend ostream &operator<<(ostream &os, const Zau &zau);
 };
 
 #endif
