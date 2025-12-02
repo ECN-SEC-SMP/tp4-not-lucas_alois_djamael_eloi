@@ -14,10 +14,18 @@
  */
 #include "zu.hpp"
     
-Zu::Zu(int num, string proprio, Polygone<int> forme)
+Zu::Zu(int num, string proprio, Polygone<int> forme) 	: Parcelle(num, proprio, forme)
 {
-	Parcelle(num, proprio, forme);
+	this->setNumero(num);
+	this->setProprietaire(proprio);
+	this->setForme(forme);
 	this->setType("ZU");
+	this->surface = this->getForme().calculerSurface();
+	//surface construite aléatoire entre 20 et 80% de la surface totale
+	float pourcentage = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/0.6)) + 0.2; 
+	this->surfaceConstruite = pourcentage * surfaceConstructible();
+	//pConstructible est aléatoirement défini dans le constructeur de la classe Parcelle
+
 }
 
 void Zu::setType(string _type)

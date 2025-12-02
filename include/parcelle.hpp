@@ -16,7 +16,6 @@
 #pragma once
 
 #include <string>
-
 #include "polygone.hpp"
 
 using namespace std;
@@ -27,17 +26,12 @@ using namespace std;
  */
 class Parcelle
 {
-private:
+protected:
     string type;
-
     int numero;
-
     string proprietaire;
-
     float surface;
-
     Polygone<int> forme;
-
     int pConstructible;
 
 public:
