@@ -48,4 +48,3 @@ float Zu::surfaceConstructible()
 {
 	return this->pConstructible * this->getSurface();
 }
-	

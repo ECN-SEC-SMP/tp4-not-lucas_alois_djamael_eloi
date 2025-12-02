@@ -12,3 +12,19 @@
  * @copyright Copyright (c) 2025
  * 
  */
+#include "zn.hpp"
+    
+Zn::Zn(int num, string proprio, Polygone<int> forme) 	: Parcelle(num, proprio, forme)
+{
+	this->setNumero(num);
+	this->setProprietaire(proprio);
+	this->setForme(forme);
+	this->setType("ZN");
+	this->surface = this->getForme().calculerSurface();
+}
+
+void Zn::setType(string _type)
+{
+	_type = "ZN";
+	this->type = _type;
+}

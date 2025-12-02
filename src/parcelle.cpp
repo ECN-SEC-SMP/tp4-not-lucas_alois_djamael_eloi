@@ -14,7 +14,6 @@
  */
 
 #include <random>
-
 #include "parcelle.hpp"
 
 Parcelle::Parcelle(int num, string proprio, Polygone<int> forme)

@@ -12,3 +12,23 @@
  * @copyright Copyright (c) 2025
  * 
  */
+#ifndef zn_hpp
+#define zn_hpp
+
+#pragma once
+
+#include <iostream>
+#include "constructible.hpp"
+#include "parcelle.hpp"
+using namespace std;
+
+class Zn : public Constructible, public Parcelle{
+	private:
+        string typeCulture;
+		
+	public:
+		Zn(int num, string proprio, Polygone<int> forme);
+        void setType(string type);
+};
+
+#endif
