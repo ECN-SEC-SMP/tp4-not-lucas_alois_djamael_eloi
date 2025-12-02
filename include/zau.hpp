@@ -24,10 +24,10 @@
 using namespace std;
 
 class Zau : public Constructible, public Parcelle{	
-	public:
-		Zau(int num, string proprio, Polygone<int> forme);
-		void setType(string type);
-		float surfaceConstructible();
+public:
+	Zau(int num, string proprio, Polygone<int> forme);
+	void setType(string type);
+	float surfaceConstructible();
 };
 
 #endif

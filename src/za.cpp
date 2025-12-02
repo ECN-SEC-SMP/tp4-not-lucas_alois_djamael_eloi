@@ -12,3 +12,32 @@
  * @copyright Copyright (c) 2025
  * 
  */
+#include "za.hpp"
+
+Za::Za(int num, string proprio, Polygone<int> forme, string typeCulture) : Zn(num, proprio, forme)
+{
+    this->setType("ZA");
+    this->typeCulture = typeCulture;
+}
+
+void Za::setType(string _type)
+{
+    _type = "ZA";
+    this->type = _type;
+}
+
+string Za::getTypeCulture() const
+{
+    return this->typeCulture;
+}
+
+void Za::setTypeCulture(string typeCulture)
+{
+    this->typeCulture = typeCulture;
+}
+
+void Za::peutConstruireBatAgricole()
+{
+    cout << "Construction de batiment agricole autorisée sur cette parcelle." << endl;
+    //+logique
+}

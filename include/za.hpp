@@ -12,3 +12,27 @@
  * @copyright Copyright (c) 2025
  * 
  */
+#ifndef za_hpp
+#define za_hpp
+
+#pragma once
+
+#include <iostream>
+#include "constructible.hpp"
+#include "parcelle.hpp"
+#include "zn.hpp"
+using namespace std;
+
+class Za : public Zn{
+protected:
+        string typeCulture;
+        
+public:
+        Za(int num, string proprio, Polygone<int> forme, string typeCulture);
+        void setType(string type);
+        string getTypeCulture() const;
+        void setTypeCulture(string typeCulture);
+        void peutConstruireBatAgricole();
+};
+
+#endif

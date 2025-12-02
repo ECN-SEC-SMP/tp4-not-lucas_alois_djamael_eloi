@@ -22,13 +22,13 @@
 #include "parcelle.hpp"
 using namespace std;
 
-class Zn : public Constructible, public Parcelle{
-	private:
-        string typeCulture;
-		
-	public:
-		Zn(int num, string proprio, Polygone<int> forme);
-        void setType(string type);
+class Zn : public Parcelle{
+protected:
+	string typeCulture;
+	
+public:
+	Zn(int num, string proprio, Polygone<int> forme);
+	void setType(string type);
 };
 
 #endif

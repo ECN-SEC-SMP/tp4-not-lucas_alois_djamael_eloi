@@ -28,9 +28,8 @@ using namespace std;
 
 class carte
 {
-private:
+protected:
     vector<Parcelle *> listeParcelles;
-
     float surfaceTotale;
 
 public:
