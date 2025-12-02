@@ -62,35 +62,35 @@ public:
      *
      * @return int numéro de la parcelle
      */
-    int getNumero();
+    int getNumero() const;
 
     /**
      * @brief Get the Proprietaire object
      *
      * @return string propriétaire de la parcelle
      */
-    string getProprietaire();
+    string getProprietaire() const;
 
     /**
      * @brief Get the Surface object
      *
      * @return float surface de la parcelle
      */
-    float getSurface();
+    float getSurface() const;
 
     /**
      * @brief Get the Forme object
      *
      * @return Polygone<int> forme de la parcelle
      */
-    Polygone<int> getForme();
+    Polygone<int> getForme() const;
 
     /**
      * @brief Get the Type object
      *
      * @return string type de la parcelle
      */
-    string getType();
+    string getType() const;
 
     /**
      * @brief Set the Numero object

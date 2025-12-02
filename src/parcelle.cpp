@@ -30,7 +30,7 @@ Parcelle::Parcelle(int num, string proprio, Polygone<int> forme)
     this->type = "N/A";
 }
 
-Parcelle::Parcelle(Parcelle Parc)
+Parcelle::Parcelle(const Parcelle& Parc)
 {
     this->numero = Parc.numero;
     this->proprietaire = Parc.proprietaire;
@@ -39,27 +39,27 @@ Parcelle::Parcelle(Parcelle Parc)
     this->surface = Parc.surface;
 }
 
-int Parcelle::getNumero()
+int Parcelle::getNumero() const
 {
     return this->numero;
 }
 
-string Parcelle::getProprietaire()
+string Parcelle::getProprietaire() const
 {
     return this->proprietaire;
 }
 
-float Parcelle::getSurface()
+float Parcelle::getSurface() const
 {
     return this->surface;
 }
 
-Polygone<int> Parcelle::getForme()
+Polygone<int> Parcelle::getForme() const
 {
     return this->forme;
 }
 
-string Parcelle::getType()
+string Parcelle::getType() const
 {
     return this->type;
 }
@@ -82,10 +82,10 @@ void Parcelle::setForme(Polygone<int> forme)
 
 ostream &operator<<(ostream &os, const Parcelle &p)
 {
-    os << "Parcelle n°" << p.getNumero() << "\n";
+    os << "Parcelle n°" << p.getNumero() << " :\n";
     os << "    Type : " << p.getType() << "\n";
+    os << "    Polygone : " << p.getForme() << "\n";
     os << "    Propriétaire : " << p.getProprietaire() << "\n";
-    os << "    Polygone : " << this->forme << "\n";
     os << "    Surface : " << p.getSurface() << " m²\n";
     return os;
 }
