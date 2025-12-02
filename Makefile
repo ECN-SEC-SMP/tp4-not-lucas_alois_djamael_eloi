@@ -6,7 +6,12 @@ ASSETSDIR := assets
 all: $(BUILDDIR)/main.out
 
 # Build the final executable
-$(BUILDDIR)/main.out: $(BUILDDIR)/main.o | $(BUILDDIR)
+$(BUILDDIR)/main.out: $(BUILDDIR)/main.o \
+                      $(BUILDDIR)/parcelle.o \
+                      $(BUILDDIR)/za.o \
+                      $(BUILDDIR)/zau.o \
+                      $(BUILDDIR)/zn.o \
+                      $(BUILDDIR)/zu.o | $(BUILDDIR)
 	g++ -o $@ $^
 
 # Build main.o
@@ -16,6 +21,22 @@ $(BUILDDIR)/main.o: $(SRCDIR)/main.cpp $(INCDIR)/point2d.hpp $(INCDIR)/polygone.
 # Build parcelle.o
 $(BUILDDIR)/parcelle.o: $(SRCDIR)/parcelle.cpp $(INCDIR)/parcelle.hpp $(INCDIR)/polygone.hpp $(INCDIR)/point2d.hpp | $(BUILDDIR)
 	g++ -I$(INCDIR) -c $(SRCDIR)/parcelle.cpp -o $(BUILDDIR)/parcelle.o
+
+# Build za.o
+$(BUILDDIR)/za.o: $(SRCDIR)/za.cpp $(INCDIR)/za.hpp $(INCDIR)/zn.hpp $(INCDIR)/parcelle.hpp | $(BUILDDIR)
+	g++ -I$(INCDIR) -c $(SRCDIR)/za.cpp -o $(BUILDDIR)/za.o
+
+# Build zau.o
+$(BUILDDIR)/zau.o: $(SRCDIR)/zau.cpp $(INCDIR)/zau.hpp $(INCDIR)/constructible.hpp $(INCDIR)/parcelle.hpp | $(BUILDDIR)
+	g++ -I$(INCDIR) -c $(SRCDIR)/zau.cpp -o $(BUILDDIR)/zau.o
+
+# Build zn.o
+$(BUILDDIR)/zn.o: $(SRCDIR)/zn.cpp $(INCDIR)/zn.hpp $(INCDIR)/parcelle.hpp | $(BUILDDIR)
+	g++ -I$(INCDIR) -c $(SRCDIR)/zn.cpp -o $(BUILDDIR)/zn.o
+
+# Build zu.o
+$(BUILDDIR)/zu.o: $(SRCDIR)/zu.cpp $(INCDIR)/zu.hpp $(INCDIR)/constructible.hpp $(INCDIR)/parcelle.hpp | $(BUILDDIR)
+	g++ -I$(INCDIR) -c $(SRCDIR)/zu.cpp -o $(BUILDDIR)/zu.o
 
 # Create build directory
 $(BUILDDIR):
