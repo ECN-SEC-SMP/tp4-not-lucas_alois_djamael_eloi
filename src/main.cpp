@@ -19,6 +19,10 @@
 #include "point2d.hpp"
 #include "polygone.hpp"
 #include "parcelle.hpp"
+#include "zau.hpp"
+#include "zn.hpp"
+#include "zu.hpp"
+#include "za.hpp"
 
 using namespace std;
 
@@ -27,6 +31,8 @@ int main()
     cout << "------------" << endl;
     cout << "|  TP PLU  |" << endl;
     cout << "------------" << endl;
+
+    srand(time(nullptr)); // Initialisation de la graine pour les nombres aléatoires
 
     cout << "--------------------------" << endl;
     cout << "Test de la classe Polygone" << endl;
@@ -71,6 +77,14 @@ int main()
     cout << "--------------------" << endl;
     cout << "Test de la classe ZAU" << endl;
     cout << "--------------------" << endl;
+    
+    // création polygone (3 sommets) pour la parcelle1 ZAU
+    vector<Point2D<int>> listeSommets_parcelle1 = {Point2D<int>(0, 0), Point2D<int>(4, 0), Point2D<int>(4, 3)};
+    Polygone<int> poly_parcelle1(listeSommets_parcelle1);
+
+    // création de la parcelle1 ZAU
+    Zau zau1_test(43, "Alice", poly_parcelle1);
+    cout << zau1_test << endl;
 
     cout << "--------------------" << endl;
     cout << "Test de la classe ZN" << endl;
