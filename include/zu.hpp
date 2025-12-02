@@ -12,3 +12,28 @@
  * @copyright Copyright (c) 2025
  * 
  */
+
+#ifndef zu_hpp
+#define zu_hpp
+
+#pragma once
+
+#include <iostream>
+#include "constructible.hpp"
+#include "parcelle.hpp"
+using namespace std;
+
+class Zu : public Constructible, public Parcelle{
+	private:
+		string type;
+        float surfaceConstruite; //une ZU a déjà une surface (en m2) construite.
+		
+	public:
+		Zu(int num, string proprio, Polygone<int> forme);
+        void setType(string type);
+        void setSurfaceConstruite(float surfaceConstruite);
+        float getSurfaceConstruite();
+		float surfaceConstructible(); //donne la surface constructible restante
+};
+
+#endif

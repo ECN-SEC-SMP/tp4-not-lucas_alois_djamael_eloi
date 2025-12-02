@@ -20,15 +20,13 @@ Zau::Zau(int num, string proprio, Polygone<int> forme)
 	this->setType("ZAU");
 }
 
-
-float Zau::surfaceConstructible()
-{
-	return this->pConstructible * this->getSurface();
-}
-
 void Zau::setType(string _type)
 {
 	_type = "ZAU";
 	this->type = _type;
 }
-	
+
+float Zau::surfaceConstructible()
+{
+	return this->pConstructible * this->getSurface();
+}

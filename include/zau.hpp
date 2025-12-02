@@ -29,9 +29,8 @@ class Zau : public Constructible, public Parcelle{
 		
 	public:
 		Zau(int num, string proprio, Polygone<int> forme);
-		float surfaceConstructible();
 		void setType(string type);
-		
+		float surfaceConstructible();
 };
 
 #endif

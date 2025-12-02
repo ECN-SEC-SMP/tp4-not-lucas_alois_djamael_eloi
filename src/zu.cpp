@@ -12,3 +12,32 @@
  * @copyright Copyright (c) 2025
  * 
  */
+#include "zu.hpp"
+    
+Zu::Zu(int num, string proprio, Polygone<int> forme)
+{
+	Parcelle(num, proprio, forme);
+	this->setType("ZU");
+}
+
+void Zu::setType(string _type)
+{
+	_type = "ZU";
+	this->type = _type;
+}
+
+void Zu::setSurfaceConstruite(float surfaceConstruite)
+{
+    this->surfaceConstruite = surfaceConstruite;
+}
+
+float Zu::getSurfaceConstruite()
+{
+    return this->surfaceConstruite;
+}
+
+float Zu::surfaceConstructible()
+{
+	return this->pConstructible * this->getSurface();
+}
+	
