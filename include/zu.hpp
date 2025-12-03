@@ -31,8 +31,9 @@ public:
     Zu(int num, string proprio, Polygone<int> forme);
     void setType(string type) override;
     void setSurfaceConstruite(float surfaceConstruite);
-    float getSurfaceConstruite();
+    float getSurfaceConstruite() const;
     float surfaceConstructible() const override; //donne la surface constructible restante
+    friend ostream &operator<<(ostream &os, const Zu &zu);
 };
 
 #endif

@@ -39,12 +39,21 @@ void Zu::setSurfaceConstruite(float surfaceConstruite)
     this->surfaceConstruite = surfaceConstruite;
 }
 
-float Zu::getSurfaceConstruite()
+float Zu::getSurfaceConstruite() const
 {
     return this->surfaceConstruite;
 }
 
 float Zu::surfaceConstructible() const
 {
-	return this->pConstructible * this->getSurface();
+	return (this->pConstructible * this->getSurface())/100;
+}
+
+ostream &operator<<(ostream &os, const Zu &zu)
+{
+    os << static_cast<const Parcelle&>(zu);
+    os << "    % constructible : " << zu.pConstructible << " %\n";
+	os << "    Surface construite : " << zu.getSurfaceConstruite() << " m2\n";
+	os << "    Surface a construire restante : " << zu.surfaceConstructible() - zu.getSurfaceConstruite() << " m2\n";
+    return os;
 }
