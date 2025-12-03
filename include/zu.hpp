@@ -33,7 +33,7 @@ public:
     void setSurfaceConstruite(float surfaceConstruite);
     float getSurfaceConstruite() const;
     float surfaceConstructible() const override; //donne la surface constructible restante
-    friend ostream &operator<<(ostream &os, const Zu &zu);
+    friend ostream &operator<<(ostream &os, const Zu &zu); 
 };
 
 #endif

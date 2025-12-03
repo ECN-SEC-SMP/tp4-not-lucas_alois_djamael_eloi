@@ -56,4 +56,4 @@ ostream &operator<<(ostream &os, const Zu &zu)
 	os << "    Surface construite : " << zu.getSurfaceConstruite() << " m2\n";
 	os << "    Surface a construire restante : " << zu.surfaceConstructible() - zu.getSurfaceConstruite() << " m2\n";
     return os;
-}
+} 
