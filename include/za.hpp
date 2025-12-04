@@ -31,7 +31,7 @@ public:
         void setType(string type) override;
         string getTypeCulture() const;
         void setTypeCulture(string typeCulture);
-        void peutConstruireBatAgricole();
+        void peutConstruireBatAgricole(float surfaceConstruite);
         friend ostream &operator<<(ostream &os, const Za &za);
 
 };

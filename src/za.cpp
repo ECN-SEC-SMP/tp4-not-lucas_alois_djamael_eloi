@@ -37,10 +37,24 @@ void Za::setTypeCulture(string typeCulture)
     this->typeCulture = typeCulture;
 }
 
-void Za::peutConstruireBatAgricole()
+void Za::peutConstruireBatAgricole(float surfaceConstruite)
 {
     cout << "Construction de batiment agricole autorisée sur cette parcelle." << endl;
-    //+logique
+    //Sur une ZA, un agriculteur peut construire des bâtiments agricoles à condition que la
+    //surface construite ne dépasse pas 10% de la surface de la ZA et 200m2 au maximum
+    if(surfaceConstruite * 100 / this->getSurface() > 10) 
+    {
+        cout << "Surface construite dépasse 10% de ka surface de la ZA. Construction non autorisée." << endl;
+    }
+    else if(surfaceConstruite > 200)
+    {
+        cout << "Surface construite dépasse 200m2. Construction non autorisée." << endl;
+    }
+    else
+    {
+        cout << "Construction autorisée." << endl;
+    }    
+    
 }
 
 ostream &operator<<(ostream &os, const Za &za)

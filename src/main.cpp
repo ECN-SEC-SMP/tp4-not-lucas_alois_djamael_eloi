@@ -122,7 +122,8 @@ int main()
     //test méthode peutConstruireBatAgricole
     bool canBuild = false;
     cout << "Test de la methode peutConstruireBatAgricole pour la parcelle ZA :" << endl;
-    za1_test.peutConstruireBatAgricole();
+    za1_test.peutConstruireBatAgricole(1); //1 m2 construit
+    
 
     
     cout << endl;
