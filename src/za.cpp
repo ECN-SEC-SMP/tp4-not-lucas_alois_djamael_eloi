@@ -42,3 +42,10 @@ void Za::peutConstruireBatAgricole()
     cout << "Construction de batiment agricole autorisée sur cette parcelle." << endl;
     //+logique
 }
+
+ostream &operator<<(ostream &os, const Za &za)
+{
+    os << static_cast<const Zn&>(za);
+    os << "    Type de culture : " << za.typeCulture << "\n";
+    return os;
+}

@@ -75,7 +75,7 @@ int main()
     cout << "--------------------" << endl;
 
     // création polygone (4 sommets) pour la parcelle1 ZU
-    vector<Point2D<int>> listeSommets_parcelle1 = {Point2D<int>(10, 10), Point2D<int>(14, 10), Point2D<int>(14, 13), Point2D<int>(10, 13)};
+    vector<Point2D<int>> listeSommets_parcelle1 = {Point2D<int>(10, 10), Point2D<int>(14, 10), Point2D<int>(14, 13) , Point2D<int>(10, 13)};
     Polygone<int> poly_parcelle1(listeSommets_parcelle1);
 
     // création de la parcelle1 ZAU
@@ -85,7 +85,7 @@ int main()
     cout << "--------------------" << endl;
     cout << "Test de la classe ZAU" << endl;
     cout << "--------------------" << endl;
-
+    
     // création polygone (3 sommets) pour la parcelle1 ZAU
     vector<Point2D<int>> listeSommets_parcelle2 = {Point2D<int>(0, 0), Point2D<int>(4, 0), Point2D<int>(4, 3)};
     Polygone<int> poly_parcelle2(listeSommets_parcelle2);
@@ -95,12 +95,28 @@ int main()
     cout << zau1_test << endl;
 
     cout << "--------------------" << endl;
+    cout << "Test de la classe ZN" << endl;
+    cout << "--------------------" << endl;
+
+    // création polygone (3 sommets) pour la parcelle1 ZN - pas de superposition avec les précédentes
+    vector<Point2D<int>> listeSommets_parcelle3 = {Point2D<int>(20, 20), Point2D<int>(29, 20), Point2D<int>(29, 33)};
+    Polygone<int> poly_parcelle3(listeSommets_parcelle3);
+
+    // création de la parcelle3 ZN
+    Zn zn1_test(67, "Jean", poly_parcelle3);
+    cout << zn1_test << endl;
+
+    cout << "--------------------" << endl;
     cout << "Test de la classe ZA" << endl;
     cout << "--------------------" << endl;
 
-    cout << "--------------------" << endl;
-    cout << "Test de la classe ZN" << endl;
-    cout << "--------------------" << endl;
+    // création polygone (3 sommets) pour la parcelle1 ZA - pas de superposition avec les précédentes
+    vector<Point2D<int>> listeSommets_parcelle4 = {Point2D<int>(40, 40), Point2D<int>(50, 40), Point2D<int>(50, 55)};
+    Polygone<int> poly_parcelle4(listeSommets_parcelle4);
+
+    // création de la parcelle4 ZA
+    Za za1_test(92, "Marie", poly_parcelle4, "Céréales");
+    cout << za1_test << endl; 
 
     return 0;
 }

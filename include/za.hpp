@@ -32,4 +32,6 @@ public:
         string getTypeCulture() const;
         void setTypeCulture(string typeCulture);
         void peutConstruireBatAgricole();
+        friend ostream &operator<<(ostream &os, const Za &za);
+
 };
