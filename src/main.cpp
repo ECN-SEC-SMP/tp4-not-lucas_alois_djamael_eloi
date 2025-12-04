@@ -119,6 +119,11 @@ int main()
     Za za1_test(92, "Marie", poly_parcelle4, "Céréales");
     cout << za1_test << endl; 
 
+    //test méthode peutConstruireBatAgricole
+    bool canBuild = false;
+    cout << "Test de la methode peutConstruireBatAgricole pour la parcelle ZA :" << endl;
+    za1_test.peutConstruireBatAgricole();
+
     
     cout << endl;
     cout << "-----------------------" << endl;
