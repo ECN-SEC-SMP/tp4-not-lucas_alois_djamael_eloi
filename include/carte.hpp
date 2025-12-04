@@ -44,7 +44,7 @@ public:
 
     /**
      * @brief Méthode permettant de sauvegarder la carte dans un fichier
-     * 
+     *
      * @param pathToFile chemin du fichier de sauvegarde
      */
     void sauvegarder(string pathToFile);

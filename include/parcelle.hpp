@@ -49,7 +49,7 @@ public:
      *
      * @param Parc Parcelle à copier
      */
-    Parcelle(const Parcelle& Parc);
+    Parcelle(const Parcelle &Parc);
 
     /**
      * @brief Destroy the Parcelle object

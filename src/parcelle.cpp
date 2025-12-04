@@ -4,13 +4,13 @@
  * @author Lucas Oros (lucas.oros@eleves.ec-nantes.fr)
  * @author Djamael Lahamion (djamael.lahamion@eleves.ec-nantes.fr)
  * @author Aloïs Guillon (alois.guillon@eleves.ec-nantes.fr)
- * 
- * @brief 
+ *
+ * @brief
  * @version 0.1
  * @date 01-12-2025
- * 
+ *
  * @copyright Copyright (c) 2025
- * 
+ *
  */
 
 #include <random>
@@ -29,7 +29,7 @@ Parcelle::Parcelle(int num, string proprio, Polygone<int> forme)
     this->type = "N/A";
 }
 
-Parcelle::Parcelle(const Parcelle& Parc)
+Parcelle::Parcelle(const Parcelle &Parc)
 {
     this->numero = Parc.numero;
     this->proprietaire = Parc.proprietaire;

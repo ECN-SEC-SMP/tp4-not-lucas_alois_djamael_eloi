@@ -75,7 +75,7 @@ int main()
     cout << "--------------------" << endl;
 
     // création polygone (4 sommets) pour la parcelle1 ZU
-    vector<Point2D<int>> listeSommets_parcelle1 = {Point2D<int>(10, 10), Point2D<int>(14, 10), Point2D<int>(14, 13) , Point2D<int>(10, 13)};
+    vector<Point2D<int>> listeSommets_parcelle1 = {Point2D<int>(10, 10), Point2D<int>(14, 10), Point2D<int>(14, 13), Point2D<int>(10, 13)};
     Polygone<int> poly_parcelle1(listeSommets_parcelle1);
 
     // création de la parcelle1 ZAU
@@ -85,7 +85,7 @@ int main()
     cout << "--------------------" << endl;
     cout << "Test de la classe ZAU" << endl;
     cout << "--------------------" << endl;
-    
+
     // création polygone (3 sommets) pour la parcelle1 ZAU
     vector<Point2D<int>> listeSommets_parcelle2 = {Point2D<int>(0, 0), Point2D<int>(4, 0), Point2D<int>(4, 3)};
     Polygone<int> poly_parcelle2(listeSommets_parcelle2);

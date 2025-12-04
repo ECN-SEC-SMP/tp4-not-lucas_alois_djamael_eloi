@@ -4,17 +4,14 @@
  * @author Lucas Oros (lucas.oros@eleves.ec-nantes.fr)
  * @author Djamael Lahamion (djamael.lahamion@eleves.ec-nantes.fr)
  * @author Aloïs Guillon (alois.guillon@eleves.ec-nantes.fr)
- * 
- * @brief 
+ *
+ * @brief
  * @version 0.1
  * @date 01-12-2025
- * 
+ *
  * @copyright Copyright (c) 2025
- * 
+ *
  */
-
-#ifndef zu_hpp
-#define zu_hpp
 
 #pragma once
 
@@ -23,17 +20,16 @@
 #include "parcelle.hpp"
 using namespace std;
 
-class Zu : public Constructible, public Parcelle{
+class Zu : public Constructible, public Parcelle
+{
 protected:
-    float surfaceConstruite; //une ZU a déjà une surface (en m2) construite.
-    
+    float surfaceConstruite; // une ZU a déjà une surface (en m2) construite.
+
 public:
     Zu(int num, string proprio, Polygone<int> forme);
     void setType(string type) override;
     void setSurfaceConstruite(float surfaceConstruite);
     float getSurfaceConstruite() const;
-    float surfaceConstructible() const override; //donne la surface constructible restante
-    friend ostream &operator<<(ostream &os, const Zu &zu); 
+    float surfaceConstructible() const override; // donne la surface constructible restante
+    friend ostream &operator<<(ostream &os, const Zu &zu);
 };
-
-#endif
