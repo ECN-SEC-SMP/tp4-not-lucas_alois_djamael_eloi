@@ -23,6 +23,7 @@
 #include "zn.hpp"
 #include "zu.hpp"
 #include "za.hpp"
+#include "carte.hpp"
 
 using namespace std;
 
@@ -117,6 +118,14 @@ int main()
     // création de la parcelle4 ZA
     Za za1_test(92, "Marie", poly_parcelle4, "Céréales");
     cout << za1_test << endl; 
+
+    
+    cout << endl;
+    cout << "-----------------------" << endl;
+    cout << "Test de la classe Carte" << endl;
+    cout << "-----------------------" << endl;
+
+    carte maCarte("assets/Parcelles_short.txt");
 
     return 0;
 }

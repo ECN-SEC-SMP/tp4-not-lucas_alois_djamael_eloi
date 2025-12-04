@@ -7,6 +7,7 @@ all: $(BUILDDIR)/main.out
 
 # Build the final executable
 $(BUILDDIR)/main.out: $(BUILDDIR)/main.o \
+                      $(BUILDDIR)/carte.o \
                       $(BUILDDIR)/parcelle.o \
                       $(BUILDDIR)/za.o \
                       $(BUILDDIR)/zau.o \
@@ -15,8 +16,12 @@ $(BUILDDIR)/main.out: $(BUILDDIR)/main.o \
 	g++ -o $@ $^
 
 # Build main.o
-$(BUILDDIR)/main.o: $(SRCDIR)/main.cpp $(INCDIR)/point2d.hpp $(INCDIR)/polygone.hpp $(INCDIR)/parcelle.hpp | $(BUILDDIR)
+$(BUILDDIR)/main.o: $(SRCDIR)/main.cpp $(INCDIR)/point2d.hpp $(INCDIR)/polygone.hpp $(INCDIR)/parcelle.hpp $(INCDIR)/za.hpp $(INCDIR)/zau.hpp $(INCDIR)/zn.hpp $(INCDIR)/zu.hpp | $(BUILDDIR)
 	g++ -I$(INCDIR) -c $(SRCDIR)/main.cpp -o $(BUILDDIR)/main.o
+
+# Build carte.o
+$(BUILDDIR)/carte.o: $(SRCDIR)/carte.cpp $(INCDIR)/carte.hpp $(INCDIR)/parcelle.hpp $(INCDIR)/za.hpp $(INCDIR)/zau.hpp $(INCDIR)/zn.hpp $(INCDIR)/zu.hpp | $(BUILDDIR)
+	g++ -I$(INCDIR) -c $(SRCDIR)/carte.cpp -o $(BUILDDIR)/carte.o
 
 # Build parcelle.o
 $(BUILDDIR)/parcelle.o: $(SRCDIR)/parcelle.cpp $(INCDIR)/parcelle.hpp $(INCDIR)/polygone.hpp $(INCDIR)/point2d.hpp | $(BUILDDIR)
