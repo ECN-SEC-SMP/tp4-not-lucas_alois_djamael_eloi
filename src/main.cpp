@@ -123,7 +123,7 @@ int main()
     bool canBuild = false;
     cout << "Test de la methode peutConstruireBatAgricole pour la parcelle ZA :" << endl;
     za1_test.peutConstruireBatAgricole(1); //1 m2 construit
-    
+
 
     
     cout << endl;
@@ -139,9 +139,29 @@ int main()
 
     // delete &maCarte;
 
-    carte maCarteFull("assets/Parcelles.txt");
+    //carte maCarteFull("assets/Parcelles.txt");
 
-    maCarteFull.sauvegarder("assets/Parcelles_sauvegarde.txt");
+    //maCarteFull.sauvegarder("assets/Parcelles_sauvegarde.txt");
+    
+    cout << "-----------------------" << endl;
+    cout << "Test des exceptions" << endl;
+    cout << "-----------------------" << endl;
+
+    cout << "Test des exceptions - sens trigo" << endl;
+
+    vector<Point2D<double>> listeSommets_test = {Point2D<double>(0.0, 0.0), Point2D<double>(1.0, 0.0), Point2D<double>(1.0, 1.0), Point2D<double>(0.0, 1.0)};
+    Polygone<double> poly_test(listeSommets_test);
+    cout << "PASS" << endl;
+
+    vector<Point2D<double>> listeSommets_test2 = {Point2D<double>(0.0, 0.0), Point2D<double>(1.0, 1.0), Point2D<double>(0.0, 1.0), Point2D<double>(1.0, 0.0)};
+    //Polygone<double> poly_test2(listeSommets_test2);
+    cout << "ERROR" << endl; // Ne doit pas passer ici => test ok ici
+
+    vector<Point2D<double>> listeSommets_test3 = {Point2D<double>(0.0, 0.0), Point2D<double>(1.0, 1.0)};
+    //Polygone<double> poly_test3(listeSommets_test3);
+    cout << "ERROR" << endl; // Ne doit pas passer ici => test ok ici
+
+
 
     return 0;
 }
