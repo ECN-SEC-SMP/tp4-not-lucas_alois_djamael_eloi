@@ -7,6 +7,37 @@ SEC 2
 - Djamael Lahamion - <djamael.lahamion@eleves.ec-nantes.fr> ( /!\ /!\ pas de PC pour ce TP /!\ /!\)
 - Aloïs Guillon - <alois.guillon@eleves.ec-nantes.fr>
 
+# Organisation du groupe
+
+## Répartition initiale — Cours 1
+
+Chaque membre a reçu une partie du projet à réaliser :
+
+- **Aloïs & Djamaël** : classe `Point2D`
+- **Lucas** : classe `Polygone`
+- **Eloi** : classe `Parcelle`
+- **Aloïs & Djamaël** : classe `ZAU`
+- **Eloi** : classe `Constructible`
+
+**Objectif atteint :** toutes les classes prévues pour le premier cours ont été terminées.
+
+---
+
+## Répartition — Cours 2
+
+- **Eloi** : classe `Carte`
+- **Lucas & Djamaël** : classes `ZA`, `ZN`, `ZU`
+
+---
+
+## 📌 Bonus & Finalisation
+
+- **Djamaël** : réalisation du **Bonus 1**
+- **Lucas** : rédaction et organisation des **tests dans le `main`**
+
+
+
+
 ## Table des matières
 
 1. [Compilation et Exécution](#compilation-et-exécution)
