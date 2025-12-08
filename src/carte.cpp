@@ -32,16 +32,24 @@ carte::carte(string pathToFile)
         return;
     }
     // lire les données
-    string line;
-    string type;
-    string numero;
-    string proprietaire;
-    string pConstructible;
-    string surfaceConstruite;
-    string culture;
+    string line = "";
+    string type = "";
+    string numero = "";
+    string proprietaire = "";
+    string pConstructible = "";
+    string surfaceConstruite = "";
+    string culture = "";
 
     while (getline(file, line))
     {
+        // Réinitialiser les variables à chaque itération
+        type = "";
+        numero = "";
+        proprietaire = "";
+        pConstructible = "";
+        surfaceConstruite = "";
+        culture = "";
+        
         // Récupérer le premier mot
         type = line.substr(0, line.find(' ')); // Entre le début de la ligne et le premier espace
         // printf("Type de parcelle : %s\n", type.c_str());
@@ -89,9 +97,10 @@ carte::carte(string pathToFile)
             line = line.substr(line.find(' ') + 1);
 
             // isoler les x et y
-            mesSommets.push_back(Point2D<int>(
-                stoi(coord.substr(coord.find('[') + 1, coord.find(';') - coord.find('[') - 1)),
-                stoi(coord.substr(coord.find(';') + 1, coord.find(']') - coord.find(';') - 1))));
+            Point2D<int> monPoint(  stoi(coord.substr(coord.find('[') + 1, coord.find(';') - coord.find('[') - 1)),
+                                    stoi(coord.substr(coord.find(';') + 1, coord.find(']') - coord.find(';') - 1)));
+
+            mesSommets.push_back(monPoint);
         }
 
         Polygone<int> maForme(mesSommets);
@@ -171,9 +180,10 @@ void carte::sauvegarder(string pathToFile)
         file << "\n";
 
         // écrire les coordonnées
-        for (const Point2D<int> &point : parcelle->getForme().getSommets())
+        vector<Point2D<int>> listeSommets = parcelle->getForme().getSommets();
+        for (const Point2D<int> &point : listeSommets)
         {
-            file << "[" << point.getX() << ";" << point.getY() << "] ";
+            file << point << " ";
         }
         file << "\n";
     }
