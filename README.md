@@ -222,7 +222,7 @@ La classe ZA décrit une zone agricole, dérivant d'une ZN mais avec un type de 
 #### Méthodes de za
 
 | Méthode | Description |
-|---------|-------------| 
+|---------|-------------|
 | getTypeCulture() | Retourne le type de culture de la parcelle agricole. |
 | setTypeCulture(typeCulture) | Définit le type de culture de la parcelle agricole. |
 | setType(type) | Définit le type de la parcelle à "ZA". |
