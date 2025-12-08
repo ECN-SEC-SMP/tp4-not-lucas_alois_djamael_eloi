@@ -18,6 +18,11 @@
 #include <iostream>
 using namespace std;
 
+/**
+ * @brief Classe représentant un point en 2D
+ * 
+ * @tparam T Type des coordonnées (int, float, double, etc.)
+ */
 template <typename T>
 class Point2D
 {
@@ -26,54 +31,128 @@ protected:
 	T y;
 
 public:
-	Point2D(T x, T y)
-	{
-		this->x = x;
-		this->y = y;
-	}
+	/**
+	 * @brief Construct a new Point2D object
+	 *
+	 * @param x abscisse
+	 * @param y ordonnée
+	 */
+	Point2D(T x, T y);
 
-	Point2D()
-	{
-		this->x = static_cast<T>(0);
-		this->y = static_cast<T>(0);
-	}
+	/**
+	 * @brief Construct a new Point2D object
+	 *
+	 */
+	Point2D();
 
-	Point2D(Point2D const &point2d)
-	{
-		this->x = point2d.x;
-		this->y = point2d.y;
-	}
+	/**
+	 * @brief Construct a new Point2D object
+	 *
+	 * @param point2d point à copier
+	 */
+	Point2D(Point2D const &point2d);
 
-	T getX() const
-	{
-		return this->x;
-	}
+	/**
+	 * @brief Get the X object
+	 *
+	 * @return T abscisse
+	 */
+	T getX() const;
 
-	T getY() const
-	{
-		return this->y;
-	}
+	/**
+	 * @brief Get the Y object
+	 *
+	 * @return T ordonnée
+	 */
+	T getY() const;
 
-	void setX(T x)
-	{
-		this->x = x;
-	}
+	/**
+	 * @brief Set the X object
+	 *
+	 * @param x abscisse
+	 */
+	void setX(T x);
 
-	void setY(T y)
-	{
-		this->y = y;
-	}
+	/**
+	 * @brief Set the Y object
+	 *
+	 * @param y ordonnée
+	 */
+	void setY(T y);
 
-	void translate(T a, T b)
-	{
-		this->x += a;
-		this->y += b;
-	}
+	/**
+	 * @brief Translate le point
+	 *
+	 * @param a translation en x
+	 * @param b translation en y
+	 */
+	void translate(T a, T b);
 
-	// Surcharge de l'opérateur <<
-	friend ostream &operator<<(ostream &os, const Point2D<T> &point)
-	{
-		os << "[" << point.x << ";" << point.y << "]";
-		return os;
-	}
+	/**
+	 * @brief Surcharge de l'opérateur <<
+	 *
+	 * @param os flux de sortie
+	 * @param point point à afficher
+	 * @return ostream& flux de sortie
+	 */
+	template <typename U>
+	friend ostream &operator<<(ostream &os, const Point2D<U> &point);
 };
+
+template <typename T>
+Point2D<T>::Point2D(T x, T y)
+{
+	this->x = x;
+	this->y = y;
+}
+
+template <typename T>
+Point2D<T>::Point2D()
+{
+	this->x = static_cast<T>(0);
+	this->y = static_cast<T>(0);
+}
+
+template <typename T>
+Point2D<T>::Point2D(Point2D const &point2d)
+{
+	this->x = point2d.x;
+	this->y = point2d.y;
+}
+template <typename T>
+T Point2D<T>::getX() const
+{
+	return this->x;
+}
+
+template <typename T>
+T Point2D<T>::getY() const
+{
+	return this->y;
+}
+
+template <typename T>
+void Point2D<T>::setX(T x)
+{
+	this->x = x;
+}
+
+template <typename T>
+void Point2D<T>::setY(T y)
+{
+	this->y = y;
+}
+
+template <typename T>
+void Point2D<T>::translate(T a, T b)
+{
+	this->x += a;
+	this->y += b;
+}
+
+template <typename T>
+ostream &operator<<(ostream &os, const Point2D<T> &point)
+{
+	os << "[" << point.x << ";" << point.y << "]";
+	return os;
+}

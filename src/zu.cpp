@@ -22,7 +22,7 @@ Zu::Zu(int num, string proprio, Polygone<int> forme, float mypConstructible, flo
 	this->setForme(forme);
 	this->setType("ZU");
 	this->surface = this->getForme().calculerSurface();
-	
+
 	this->pConstructible = mypConstructible;
 	this->surfaceConstruite = mysurfaceConstruite;
 }
@@ -60,4 +60,9 @@ ostream &operator<<(ostream &os, const Zu &zu)
 {
 	zu.afficher(os);
 	return os;
+}
+
+float Zu::getPourcentageConstructible() const
+{
+	return pConstructible;
 }

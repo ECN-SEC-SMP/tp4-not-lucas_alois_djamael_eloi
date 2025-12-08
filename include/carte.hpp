@@ -40,6 +40,10 @@ public:
      */
     carte(string pathToFile);
 
+    /**
+     * @brief Destroy the carte object
+     * 
+     */
     ~carte();
 
     /**

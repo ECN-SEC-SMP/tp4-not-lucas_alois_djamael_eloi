@@ -22,7 +22,7 @@ Zau::Zau(int num, string proprio, Polygone<int> forme, float mypConstructible) :
 	this->setForme(forme);
 	this->setType("ZAU");
 	this->surface = this->getForme().calculerSurface();
-	
+
 	this->pConstructible = mypConstructible;
 }
 
@@ -47,4 +47,9 @@ ostream &operator<<(ostream &os, const Zau &zau)
 {
 	zau.afficher(os);
 	return os;
+}
+
+float Zau::getPourcentageConstructible() const
+{
+	return pConstructible;
 }
