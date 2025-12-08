@@ -79,8 +79,8 @@ int main()
     vector<Point2D<int>> listeSommets_parcelle1 = {Point2D<int>(10, 10), Point2D<int>(14, 10), Point2D<int>(14, 13) , Point2D<int>(10, 13)};
     Polygone<int> poly_parcelle1(listeSommets_parcelle1);
 
-    // création de la parcelle1 ZAU
-    Zu zu1_test(43, "Robert", poly_parcelle1, 60.0, 20.0);
+    // création de la parcelle1 ZU
+    Zu zu1_test(43, "Robert", poly_parcelle1, 60.0, 3.0);
     cout << zu1_test << endl;
 
     cout << "--------------------" << endl;
