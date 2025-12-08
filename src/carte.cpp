@@ -39,49 +39,49 @@ carte::carte(string pathToFile)
     string pConstructible;
     string surfaceConstruite;
     string culture;
-    
+
     while (getline(file, line))
     {
         // Récupérer le premier mot
         type = line.substr(0, line.find(' ')); // Entre le début de la ligne et le premier espace
-        printf("Type de parcelle : %s\n", type.c_str());
+        // printf("Type de parcelle : %s\n", type.c_str());
         line = line.substr(line.find(' ') + 1);
         // Récupérer le deuxième mot
         numero = line.substr(0, line.find(' ')); // Entre le début de la ligne et le premier espace
-        printf("Numéro de parcelle : %s\n", numero.c_str());
+        // printf("Numéro de parcelle : %s\n", numero.c_str());
         // Récupérer le troisième mot
         line = line.substr(line.find(' ') + 1);
         proprietaire = line.substr(0, line.find(' ')); // Entre le début de la ligne et le premier espace
-        printf("Propriétaire de parcelle : %s\n", proprietaire.c_str());
+        // printf("Propriétaire de parcelle : %s\n", proprietaire.c_str());
         line = line.substr(line.find(' ') + 1);
         
         if (type == "ZU")
         {
             // récupérer pConstructible et surfaceConstruite
             pConstructible = line.substr(0, line.find(' '));
-            printf("Pourcentage constructible : %s\n", pConstructible.c_str());
+            // printf("Pourcentage constructible : %s\n", pConstructible.c_str());
             line = line.substr(line.find(' ') + 1);
              surfaceConstruite = line.substr(0, line.find(' '));
-            printf("Surface construite : %s\n", surfaceConstruite.c_str());
+            // printf("Surface construite : %s\n", surfaceConstruite.c_str());
         }
         else if (type == "ZAU")
         {
             // récupérer pConstructible
             pConstructible = line.substr(0, line.find(' '));
-            printf("Pourcentage constructible : %s\n", pConstructible.c_str());
+            // printf("Pourcentage constructible : %s\n", pConstructible.c_str());
         }
         else if (type == "ZA")
         {
             // récupérer culture
             culture = line.substr(0, line.find(' '));
-            printf("Culture : %s\n", culture.c_str());
+            // printf("Culture : %s\n", culture.c_str());
         }
 
         vector<Point2D<int>> mesSommets;
 
         // Récupérer les coordonnées sur la ligne du dessous
         getline(file, line);
-        printf("Coordonnées : %s\n", line.c_str());
+        // printf("Coordonnées : %s\n", line.c_str());
         // isoler les x;y [0;30] [60;100] [0;100]
         while (line.find(' ') != string::npos)
         {
@@ -118,7 +118,14 @@ carte::carte(string pathToFile)
         }
     }
 
+    // calculer la surface totale
+    for (Parcelle *parcelle : listeParcelles)
+    {
+        this->surfaceTotale += parcelle->getSurface();
+    }
     file.close();
+
+    printf("Surface totale de la nouvelle carte : %.2f m² pour %lu parcelles\n", this->surfaceTotale, listeParcelles.size());
 }
 
 carte::~carte()
@@ -127,9 +134,49 @@ carte::~carte()
     {
         delete parcelle;
     }
+
+    listeParcelles.clear();
 }
 
 void carte::sauvegarder(string pathToFile)
 {
-    // TODO
+    ofstream file(pathToFile);
+    if (!file.is_open())
+    {
+        cerr << "Erreur lors de l'ouverture du fichier en écriture : " << pathToFile << endl;
+        return;
+    }
+
+    for (Parcelle *parcelle : listeParcelles)
+    {
+        file << parcelle->getType() << " " << parcelle->getNumero() << " " << parcelle->getProprietaire() << " ";
+
+        if (parcelle->getType() == "ZU")
+        {
+            Zu *zu = dynamic_cast<Zu *>(parcelle);
+            file << zu->getPourcentageConstructible() << " " << zu->getSurfaceConstruite() << " ";
+        }
+        else if (parcelle->getType() == "ZAU")
+        {
+            Zau *zau = dynamic_cast<Zau *>(parcelle);
+            file << zau->getPourcentageConstructible() << " ";
+        }
+        else if (parcelle->getType() == "ZA")
+        {
+            Za *za = dynamic_cast<Za *>(parcelle);
+            file << za->getTypeCulture() << " ";
+        }
+
+        // passer à la ligne
+        file << "\n";
+
+        // écrire les coordonnées
+        for (const Point2D<int> &point : parcelle->getForme().getSommets())
+        {
+            file << "[" << point.getX() << ";" << point.getY() << "] ";
+        }
+        file << "\n";
+    }
+
+    file.close();
 }

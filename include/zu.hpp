@@ -32,4 +32,9 @@ public:
     float getSurfaceConstruite() const;
     float surfaceConstructible() const override; // donne la surface constructible restante
     friend ostream &operator<<(ostream &os, const Zu &zu);
+
+    float getPourcentageConstructible() const
+    {
+        return pConstructible;
+    }
 };

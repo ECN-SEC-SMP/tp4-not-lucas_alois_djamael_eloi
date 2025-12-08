@@ -27,4 +27,9 @@ public:
 	void setType(string type) override;
 	float surfaceConstructible() const override;
 	friend ostream &operator<<(ostream &os, const Zau &zau);
+
+	float getPourcentageConstructible() const
+	{
+		return pConstructible;
+	}
 };

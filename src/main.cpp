@@ -133,5 +133,13 @@ int main()
 
     carte maCarte("assets/Parcelles_short.txt");
 
+    maCarte.sauvegarder("assets/Parcelles_short_sauvegarde.txt");
+
+    // delete &maCarte;
+
+    carte maCarteFull("assets/Parcelles.txt");
+
+    maCarteFull.sauvegarder("assets/Parcelles_sauvegarde.txt");
+
     return 0;
 }
