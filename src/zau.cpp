@@ -15,14 +15,15 @@
 
 #include "zau.hpp"
 
-Zau::Zau(int num, string proprio, Polygone<int> forme) : Parcelle(num, proprio, forme)
+Zau::Zau(int num, string proprio, Polygone<int> forme, float mypConstructible) : Parcelle(num, proprio, forme)
 {
 	this->setNumero(num);
 	this->setProprietaire(proprio);
 	this->setForme(forme);
 	this->setType("ZAU");
 	this->surface = this->getForme().calculerSurface();
-	// pConstructible est aléatoirement défini dans le constructeur de la classe Parcelle
+	
+	this->pConstructible = mypConstructible;
 }
 
 void Zau::setType(string _type)

@@ -22,8 +22,6 @@ Parcelle::Parcelle(int num, string proprio, Polygone<int> forme)
     this->proprietaire = proprio;
     this->forme = forme;
 
-    this->pConstructible = rand() % 96 + 5; // Valeur aléatoire entre 5 et 100
-
     this->surface = forme.calculerSurface();
 
     this->type = "N/A";

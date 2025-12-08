@@ -26,7 +26,7 @@ protected:
     float surfaceConstruite; // une ZU a déjà une surface (en m2) construite.
 
 public:
-    Zu(int num, string proprio, Polygone<int> forme);
+    Zu(int num, string proprio, Polygone<int> forme, float mypConstructible, float mysurfaceConstruite);
     void setType(string type) override;
     void setSurfaceConstruite(float surfaceConstruite);
     float getSurfaceConstruite() const;

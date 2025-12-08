@@ -80,7 +80,7 @@ int main()
     Polygone<int> poly_parcelle1(listeSommets_parcelle1);
 
     // création de la parcelle1 ZAU
-    Zu zu1_test(43, "Robert", poly_parcelle1);
+    Zu zu1_test(43, "Robert", poly_parcelle1, 60.0, 20.0);
     cout << zu1_test << endl;
 
     cout << "--------------------" << endl;
@@ -92,7 +92,7 @@ int main()
     Polygone<int> poly_parcelle2(listeSommets_parcelle2);
 
     // création de la parcelle1 ZAU
-    Zau zau1_test(14, "Alice", poly_parcelle2);
+    Zau zau1_test(14, "Alice", poly_parcelle2, 40.0);
     cout << zau1_test << endl;
 
     cout << "--------------------" << endl;
