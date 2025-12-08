@@ -1,0 +1,40 @@
+/**
+ * @file zu.hpp
+ * @author Eloi Tourangin (eloi.tourangin@eleves.ec-nantes.fr)
+ * @author Lucas Oros (lucas.oros@eleves.ec-nantes.fr)
+ * @author Djamael Lahamion (djamael.lahamion@eleves.ec-nantes.fr)
+ * @author Aloïs Guillon (alois.guillon@eleves.ec-nantes.fr)
+ *
+ * @brief
+ * @version 0.1
+ * @date 01-12-2025
+ *
+ * @copyright Copyright (c) 2025
+ *
+ */
+
+#pragma once
+
+#include <iostream>
+#include "constructible.hpp"
+#include "parcelle.hpp"
+using namespace std;
+
+class Zu : public Constructible, public Parcelle
+{
+protected:
+    float surfaceConstruite; // une ZU a déjà une surface (en m2) construite.
+
+public:
+    Zu(int num, string proprio, Polygone<int> forme, float mypConstructible, float mysurfaceConstruite);
+    void setType(string type) override;
+    void setSurfaceConstruite(float surfaceConstruite);
+    float getSurfaceConstruite() const;
+    float surfaceConstructible() const override; // donne la surface constructible restante
+    friend ostream &operator<<(ostream &os, const Zu &zu);
+
+    float getPourcentageConstructible() const
+    {
+        return pConstructible;
+    }
+};
