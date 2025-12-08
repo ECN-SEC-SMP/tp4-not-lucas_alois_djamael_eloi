@@ -55,7 +55,7 @@ La classe Point2D est une template représentant un point dans le plan cartésie
 | setX(T x) | Définit la coordonnée x du point. |
 | setY(T y) | Définit la coordonnée y du point. |
 | translate(T dx, T dy) | Effectue une translation du point en ajoutant dx à x et dy à y. |
-| friend ostream& operator<<(ostream& os, const Point2D<T>& point) | Surcharge de l’opérateur << pour afficher le point au format [x;y]. |
+| friend ostream& operator<<(ostream& os, const Point2D\<T\>& point) | Surcharge de l'opérateur << pour afficher le point au format [x;y]. |
 
 #### Tests
 
@@ -78,7 +78,11 @@ La classe Polygone représente une figure géométrique définie par une série 
 | addPoint(p) | Ajoute un nouveau sommet au polygone. |
 | translate(dx, dy) | Effectue une translation du polygone en déplaçant tous ses sommets. |
 | calculerSurface() | Calcule et retourne la surface du polygone en utilisant la formule du shoelace. |
-| friend ostream& operator<<(ostream& os, const Polygone<T>& poly) | Surcharge de l'opérateur << pour afficher tous les sommets du polygone. |
+| friend ostream& operator<<(ostream& os, const Polygone\<T\>& poly) | Surcharge de l'opérateur << pour afficher tous les sommets du polygone. |
+
+#### Explication des choix faits pour la classe Polygone
+
+- calculerSurface : Nous avons choisi d'implémenter le calcul de la surface d'un polygone directement dans la classe Polygone. Nous aurions pu créer une méthode dans la classe Parcelle qui récupère la liste des sommets et effectue ce calcul, mais nous avons jugé plus logique de le mettre en place dans Polygone, étant donné que la surface est une propriété intrinsèque du polygone.
 
 #### Tests de Polygone
 
@@ -90,7 +94,7 @@ Dans ce test, nous créons un polygone en utilisant une liste de sommets défini
 
 #### Description de Parcelle
 
-La classe Parcelle modélise une unité foncière du cadastre. Chaque parcelle possède un numéro, un propriétaire, une forme géométrique décrite par un Polygone<int>, une surface calculée automatiquement, un pourcentage constructible et un type. C'est une classe abstraite, car elle impose l'implémentation de la méthode setType() par ses sous-classes. Elle assure la validation des données (surface strictement positive) et permet l'affichage détaillé des informations d'une parcelle
+La classe Parcelle modélise une unité foncière du cadastre. Chaque parcelle possède un numéro, un propriétaire, une forme géométrique décrite par un Polygone\<int\>, une surface calculée automatiquement, un pourcentage constructible et un type. C'est une classe abstraite, car elle impose l'implémentation de la méthode setType() par ses sous-classes. Elle assure la validation des données (surface strictement positive) et permet l'affichage détaillé des informations d'une parcelle
 
 #### Méthodes de Parcelle
 
