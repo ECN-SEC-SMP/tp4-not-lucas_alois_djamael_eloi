@@ -57,9 +57,14 @@ void Za::peutConstruireBatAgricole(float surfaceConstruite)
     
 }
 
+void Za::afficher(ostream &os) const
+{
+    Zn::afficher(os);
+    os << "    Type de culture : " << this->typeCulture << "\n";
+}
+
 ostream &operator<<(ostream &os, const Za &za)
 {
-    os << static_cast<const Zn&>(za);
-    os << "    Type de culture : " << za.typeCulture << "\n";
+    za.afficher(os);
     return os;
 }

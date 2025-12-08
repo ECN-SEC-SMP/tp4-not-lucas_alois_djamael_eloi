@@ -48,11 +48,16 @@ float Zu::surfaceConstructible() const
 	return (this->pConstructible * this->getSurface()) / 100;
 }
 
+void Zu::afficher(ostream &os) const
+{
+	Parcelle::afficher(os);
+	os << "    % constructible : " << this->pConstructible << " %\n";
+	os << "    Surface construite : " << this->getSurfaceConstruite() << " m²\n";
+	os << "    Surface à construire restante : " << this->surfaceConstructible() - this->getSurfaceConstruite() << " m²\n";
+}
+
 ostream &operator<<(ostream &os, const Zu &zu)
 {
-	os << static_cast<const Parcelle &>(zu);
-	os << "    % constructible : " << zu.pConstructible << " %\n";
-	os << "    Surface construite : " << zu.getSurfaceConstruite() << " m2\n";
-	os << "    Surface a construire restante : " << zu.surfaceConstructible() - zu.getSurfaceConstruite() << " m2\n";
+	zu.afficher(os);
 	return os;
 }

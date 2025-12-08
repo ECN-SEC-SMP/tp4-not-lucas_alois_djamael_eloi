@@ -37,4 +37,7 @@ public:
     {
         return pConstructible;
     }
+
+private:
+    void afficher(ostream &os) const override;
 };

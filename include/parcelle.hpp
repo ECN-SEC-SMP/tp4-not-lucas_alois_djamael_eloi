@@ -34,6 +34,13 @@ protected:
     Polygone<int> forme;
     int pConstructible;
 
+    /**
+     * @brief Affiche les informations de la parcelle
+     *
+     * @param os flux de sortie
+     */
+    virtual void afficher(ostream &os) const = 0;
+
 public:
     /**
      * @brief Construct a new Parcelle:: Parcelle object

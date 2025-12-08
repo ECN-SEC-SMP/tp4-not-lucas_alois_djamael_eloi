@@ -37,9 +37,14 @@ float Zau::surfaceConstructible() const
 	return (this->pConstructible * this->getSurface()) / 100; // pConstructible est un attribut de la classe Parcelle
 }
 
+void Zau::afficher(ostream &os) const
+{
+	Parcelle::afficher(os);
+	os << "    % constructible : " << this->pConstructible << " %\n";
+}
+
 ostream &operator<<(ostream &os, const Zau &zau)
 {
-	os << static_cast<const Parcelle &>(zau);
-	os << "    % constructible : " << zau.pConstructible << " %\n";
+	zau.afficher(os);
 	return os;
 }

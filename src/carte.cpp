@@ -133,8 +133,6 @@ carte::carte(string pathToFile)
         this->surfaceTotale += parcelle->getSurface();
     }
     file.close();
-
-    printf("Surface totale de la nouvelle carte : %.2f m² pour %lu parcelles\n", this->surfaceTotale, listeParcelles.size());
 }
 
 carte::~carte()
@@ -195,9 +193,11 @@ void carte::sauvegarder(string pathToFile)
 ostream &operator<<(ostream &os, const carte &c)
 {
     os << "\nCarte avec " << c.listeParcelles.size() << " parcelles et une surface totale de " << c.surfaceTotale << " m²\n";
+
     for (const Parcelle *parcelle : c.listeParcelles)
     {
-        os << *parcelle << "\n";
+        // utiliser la surcharge de l'opérateur << des classes dérivées de Parcelle (Zn, Za, Zu, Zau)
+        os << *parcelle << endl;
     }
     return os;
 }

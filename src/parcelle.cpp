@@ -77,12 +77,17 @@ void Parcelle::setForme(Polygone<int> forme)
     this->surface = forme.calculerSurface();
 }
 
+void Parcelle::afficher(ostream &os) const
+{
+    os << "Parcelle n°" << this->getNumero() << " :\n";
+    os << "    Type : " << this->getType() << "\n";
+    os << "    Polygone : " << this->getForme() << "\n";
+    os << "    Propriétaire : " << this->getProprietaire() << "\n";
+    os << "    Surface : " << this->getSurface() << " m²\n";
+}
+
 ostream &operator<<(ostream &os, const Parcelle &p)
 {
-    os << "Parcelle n°" << p.getNumero() << " :\n";
-    os << "    Type : " << p.getType() << "\n";
-    os << "    Polygone : " << p.getForme() << "\n";
-    os << "    Propriétaire : " << p.getProprietaire() << "\n";
-    os << "    Surface : " << p.getSurface() << " m²\n";
+    p.afficher(os);
     return os;
 }

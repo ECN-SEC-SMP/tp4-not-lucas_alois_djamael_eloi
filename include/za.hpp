@@ -34,4 +34,7 @@ public:
         void peutConstruireBatAgricole(float surfaceConstruite);
         friend ostream &operator<<(ostream &os, const Za &za);
 
+private:
+        void afficher(ostream &os) const override;
+
 };

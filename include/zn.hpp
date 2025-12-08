@@ -25,6 +25,8 @@ class Zn : public Parcelle
 protected:
 	string typeCulture;
 
+	void afficher(ostream &os) const override;
+
 public:
 	Zn(int num, string proprio, Polygone<int> forme);
 	void setType(string type) override;

@@ -29,3 +29,8 @@ void Zn::setType(string _type)
 	_type = "ZN";
 	this->type = _type;
 }
+
+void Zn::afficher(ostream &os) const
+{
+	Parcelle::afficher(os);
+}
