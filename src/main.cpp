@@ -135,6 +135,8 @@ int main()
 
     maCarte.sauvegarder("assets/Parcelles_short_sauvegarde.txt");
 
+    cout << maCarte << endl;
+
     // delete &maCarte;
 
     carte maCarteFull("assets/Parcelles.txt");

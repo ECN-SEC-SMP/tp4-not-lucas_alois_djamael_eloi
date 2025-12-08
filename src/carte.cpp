@@ -190,3 +190,14 @@ void carte::sauvegarder(string pathToFile)
 
     file.close();
 }
+
+// Surcharge de l'opérateur <<
+ostream &operator<<(ostream &os, const carte &c)
+{
+    os << "\nCarte avec " << c.listeParcelles.size() << " parcelles et une surface totale de " << c.surfaceTotale << " m²\n";
+    for (const Parcelle *parcelle : c.listeParcelles)
+    {
+        os << *parcelle << "\n";
+    }
+    return os;
+}

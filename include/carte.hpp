@@ -48,4 +48,6 @@ public:
      * @param pathToFile chemin du fichier de sauvegarde
      */
     void sauvegarder(string pathToFile);
+
+    friend ostream &operator<<(ostream &os, const carte &c);
 };
