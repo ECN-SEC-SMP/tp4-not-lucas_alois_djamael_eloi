@@ -16,11 +16,14 @@
 #pragma once
 
 #include <iostream>
+#include <stdexcept>
+#include <limits>
+#include <typeinfo>
 using namespace std;
 
 /**
  * @brief Classe représentant un point en 2D
- * 
+ *
  * @tparam T Type des coordonnées (int, float, double, etc.)
  */
 template <typename T>
@@ -102,22 +105,43 @@ public:
 template <typename T>
 Point2D<T>::Point2D(T x, T y)
 {
-	this->x = x;
-	this->y = y;
+	try
+	{
+		this->x = x;
+		this->y = y;
+	}
+	catch (const exception &e)
+	{
+		throw invalid_argument("Erreur lors de l'initialisation des coordonnées : " + string(e.what()));
+	}
 }
 
 template <typename T>
 Point2D<T>::Point2D()
 {
-	this->x = static_cast<T>(0);
-	this->y = static_cast<T>(0);
+	try
+	{
+		this->x = static_cast<T>(0);
+		this->y = static_cast<T>(0);
+	}
+	catch (const exception &e)
+	{
+		throw runtime_error("Erreur lors de l'initialisation du Point2D par défaut : " + string(e.what()));
+	}
 }
 
 template <typename T>
 Point2D<T>::Point2D(Point2D const &point2d)
 {
-	this->x = point2d.x;
-	this->y = point2d.y;
+	try
+	{
+		this->x = point2d.x;
+		this->y = point2d.y;
+	}
+	catch (const exception &e)
+	{
+		throw invalid_argument("Erreur lors de la copie du Point2D : " + string(e.what()));
+	}
 }
 template <typename T>
 T Point2D<T>::getX() const
@@ -134,20 +158,41 @@ T Point2D<T>::getY() const
 template <typename T>
 void Point2D<T>::setX(T x)
 {
-	this->x = x;
+	try
+	{
+		this->x = x;
+	}
+	catch (const exception &e)
+	{
+		throw invalid_argument("Erreur lors de la modification de l'abscisse : " + string(e.what()));
+	}
 }
 
 template <typename T>
 void Point2D<T>::setY(T y)
 {
-	this->y = y;
+	try
+	{
+		this->y = y;
+	}
+	catch (const exception &e)
+	{
+		throw invalid_argument("Erreur lors de la modification de l'ordonnée : " + string(e.what()));
+	}
 }
 
 template <typename T>
 void Point2D<T>::translate(T a, T b)
 {
-	this->x += a;
-	this->y += b;
+	try
+	{
+		this->x += a;
+		this->y += b;
+	}
+	catch (const exception &e)
+	{
+		throw runtime_error("Erreur lors de la translation du point : " + string(e.what()));
+	}
 }
 
 template <typename T>

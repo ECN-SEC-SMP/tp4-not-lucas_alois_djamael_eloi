@@ -14,10 +14,20 @@
  */
 
 #include <random>
+#include <stdexcept>
 #include "parcelle.hpp"
 
 Parcelle::Parcelle(int num, string proprio, Polygone<int> forme)
 {
+    if (num <= 0)
+    {
+        throw invalid_argument("Le numéro de la parcelle doit être positif et non-nul");
+    }
+    if (proprio.empty())
+    {
+        throw invalid_argument("Le propriétaire ne peut pas être vide");
+    }
+
     this->numero = num;
     this->proprietaire = proprio;
     this->forme = forme;
@@ -63,11 +73,18 @@ string Parcelle::getType() const
 
 void Parcelle::setNumero(int num)
 {
-    this->numero = num;
+    if (num <= 0)
+    {
+        throw invalid_argument("Le numéro de la parcelle doit être positif et non-nul");
+    }
 }
 
 void Parcelle::setProprietaire(string proprio)
 {
+    if (proprio.empty())
+    {
+        throw invalid_argument("Le propriétaire ne peut pas être vide");
+    }
     this->proprietaire = proprio;
 }
 

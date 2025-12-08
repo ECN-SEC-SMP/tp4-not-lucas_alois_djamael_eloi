@@ -15,6 +15,7 @@
 
 #include <fstream>
 #include <iostream>
+#include <stdexcept>
 
 #include "carte.hpp"
 #include "point2d.hpp"
@@ -28,111 +29,125 @@ carte::carte(string pathToFile)
     ifstream file(pathToFile);
     if (!file.is_open())
     {
-        cerr << "Erreur lors de l'ouverture du fichier : " << pathToFile << endl;
-        return;
+        throw runtime_error("Erreur lors de l'ouverture du fichier : " + pathToFile);
     }
-    // lire les données
-    string line = "";
-    string type = "";
-    string numero = "";
-    string proprietaire = "";
-    string pConstructible = "";
-    string surfaceConstruite = "";
-    string culture = "";
+    
+    try {
+        // lire les données
+        string line = "";
+        string type = "";
+        string numero = "";
+        string proprietaire = "";
+        string pConstructible = "";
+        string surfaceConstruite = "";
+        string culture = "";
 
-    while (getline(file, line))
-    {
-        // Réinitialiser les variables à chaque itération
-        type = "";
-        numero = "";
-        proprietaire = "";
-        pConstructible = "";
-        surfaceConstruite = "";
-        culture = "";
-        
-        // Récupérer le premier mot
-        type = line.substr(0, line.find(' ')); // Entre le début de la ligne et le premier espace
-        // printf("Type de parcelle : %s\n", type.c_str());
-        line = line.substr(line.find(' ') + 1);
-        // Récupérer le deuxième mot
-        numero = line.substr(0, line.find(' ')); // Entre le début de la ligne et le premier espace
-        // printf("Numéro de parcelle : %s\n", numero.c_str());
-        // Récupérer le troisième mot
-        line = line.substr(line.find(' ') + 1);
-        proprietaire = line.substr(0, line.find(' ')); // Entre le début de la ligne et le premier espace
-        // printf("Propriétaire de parcelle : %s\n", proprietaire.c_str());
-        line = line.substr(line.find(' ') + 1);
-        
-        if (type == "ZU")
+        while (getline(file, line))
         {
-            // récupérer pConstructible et surfaceConstruite
-            pConstructible = line.substr(0, line.find(' '));
-            // printf("Pourcentage constructible : %s\n", pConstructible.c_str());
+            // Réinitialiser les variables à chaque itération
+            type = "";
+            numero = "";
+            proprietaire = "";
+            pConstructible = "";
+            surfaceConstruite = "";
+            culture = "";
+            
+            // Récupérer le premier mot
+            type = line.substr(0, line.find(' ')); // Entre le début de la ligne et le premier espace
+            // printf("Type de parcelle : %s\n", type.c_str());
             line = line.substr(line.find(' ') + 1);
-             surfaceConstruite = line.substr(0, line.find(' '));
-            // printf("Surface construite : %s\n", surfaceConstruite.c_str());
-        }
-        else if (type == "ZAU")
-        {
-            // récupérer pConstructible
-            pConstructible = line.substr(0, line.find(' '));
-            // printf("Pourcentage constructible : %s\n", pConstructible.c_str());
-        }
-        else if (type == "ZA")
-        {
-            // récupérer culture
-            culture = line.substr(0, line.find(' '));
-            // printf("Culture : %s\n", culture.c_str());
-        }
-
-        vector<Point2D<int>> mesSommets;
-
-        // Récupérer les coordonnées sur la ligne du dessous
-        getline(file, line);
-        // printf("Coordonnées : %s\n", line.c_str());
-        // isoler les x;y [0;30] [60;100] [0;100]
-        while (line.find(' ') != string::npos)
-        {
-            string coord = line.substr(0, line.find(' '));
+            // Récupérer le deuxième mot
+            numero = line.substr(0, line.find(' ')); // Entre le début de la ligne et le premier espace
+            // printf("Numéro de parcelle : %s\n", numero.c_str());
+            // Récupérer le troisième mot
             line = line.substr(line.find(' ') + 1);
+            proprietaire = line.substr(0, line.find(' ')); // Entre le début de la ligne et le premier espace
+            // printf("Propriétaire de parcelle : %s\n", proprietaire.c_str());
+            line = line.substr(line.find(' ') + 1);
+            
+            if (type == "ZU")
+            {
+                // récupérer pConstructible et surfaceConstruite
+                pConstructible = line.substr(0, line.find(' '));
+                // printf("Pourcentage constructible : %s\n", pConstructible.c_str());
+                line = line.substr(line.find(' ') + 1);
+                 surfaceConstruite = line.substr(0, line.find(' '));
+                // printf("Surface construite : %s\n", surfaceConstruite.c_str());
+            }
+            else if (type == "ZAU")
+            {
+                // récupérer pConstructible
+                pConstructible = line.substr(0, line.find(' '));
+                // printf("Pourcentage constructible : %s\n", pConstructible.c_str());
+            }
+            else if (type == "ZA")
+            {
+                // récupérer culture
+                culture = line.substr(0, line.find(' '));
+                // printf("Culture : %s\n", culture.c_str());
+            }
 
-            // isoler les x et y
-            Point2D<int> monPoint(  stoi(coord.substr(coord.find('[') + 1, coord.find(';') - coord.find('[') - 1)),
-                                    stoi(coord.substr(coord.find(';') + 1, coord.find(']') - coord.find(';') - 1)));
+            vector<Point2D<int>> mesSommets;
 
-            mesSommets.push_back(monPoint);
+            // Récupérer les coordonnées sur la ligne du dessous
+            getline(file, line);
+            // printf("Coordonnées : %s\n", line.c_str());
+            // isoler les x;y [0;30] [60;100] [0;100]
+            while (line.find(' ') != string::npos)
+            {
+                string coord = line.substr(0, line.find(' '));
+                line = line.substr(line.find(' ') + 1);
+
+                // isoler les x et y
+                Point2D<int> monPoint(  stoi(coord.substr(coord.find('[') + 1, coord.find(';') - coord.find('[') - 1)),
+                                        stoi(coord.substr(coord.find(';') + 1, coord.find(']') - coord.find(';') - 1)));
+
+                mesSommets.push_back(monPoint);
+            }
+
+            Polygone<int> maForme(mesSommets);
+
+            if (type == "ZU")
+            {
+                Zu *newZu = new Zu(stoi(numero), proprietaire, maForme, stof(pConstructible), stof(surfaceConstruite));
+                listeParcelles.push_back(newZu);
+            }
+            else if (type == "ZAU")
+            {
+                Zau *newZau = new Zau(stoi(numero), proprietaire, maForme, stof(pConstructible));
+                listeParcelles.push_back(newZau);
+            }
+            else if (type == "ZA")
+            {
+                Za *newZa = new Za(stoi(numero), proprietaire, maForme, culture);
+                listeParcelles.push_back(newZa);
+            }
+            else if (type == "ZN")
+            {
+                Zn *newZn = new Zn(stoi(numero), proprietaire, maForme);
+                listeParcelles.push_back(newZn);
+            }
+            else
+            {
+                throw invalid_argument("Type de parcelle invalide : " + type);
+            }
         }
 
-        Polygone<int> maForme(mesSommets);
-
-        if (type == "ZU")
+        // calculer la surface totale
+        for (Parcelle *parcelle : listeParcelles)
         {
-            Zu *newZu = new Zu(stoi(numero), proprietaire, maForme, stof(pConstructible), stof(surfaceConstruite));
-            listeParcelles.push_back(newZu);
+            this->surfaceTotale += parcelle->getSurface();
         }
-        else if (type == "ZAU")
-        {
-            Zau *newZau = new Zau(stoi(numero), proprietaire, maForme, stof(pConstructible));
-            listeParcelles.push_back(newZau);
+        file.close();
+    } catch (const exception &e) {
+        file.close();
+        // Libérer la mémoire allouée avant de relancer l'exception
+        for (Parcelle *parcelle : listeParcelles) {
+            delete parcelle;
         }
-        else if (type == "ZA")
-        {
-            Za *newZa = new Za(stoi(numero), proprietaire, maForme, culture);
-            listeParcelles.push_back(newZa);
-        }
-        else if (type == "ZN")
-        {
-            Zn *newZn = new Zn(stoi(numero), proprietaire, maForme);
-            listeParcelles.push_back(newZn);
-        }
+        listeParcelles.clear();
+        throw runtime_error("Erreur lors du chargement de la carte : " + string(e.what()));
     }
-
-    // calculer la surface totale
-    for (Parcelle *parcelle : listeParcelles)
-    {
-        this->surfaceTotale += parcelle->getSurface();
-    }
-    file.close();
 }
 
 carte::~carte()
@@ -150,43 +165,67 @@ void carte::sauvegarder(string pathToFile)
     ofstream file(pathToFile);
     if (!file.is_open())
     {
-        cerr << "Erreur lors de l'ouverture du fichier en écriture : " << pathToFile << endl;
-        return;
+        throw runtime_error("Erreur lors de l'ouverture du fichier en écriture : " + pathToFile);
     }
 
-    for (Parcelle *parcelle : listeParcelles)
-    {
-        file << parcelle->getType() << " " << parcelle->getNumero() << " " << parcelle->getProprietaire() << " ";
+    try {
+        for (Parcelle *parcelle : listeParcelles)
+        {
+            if (parcelle == nullptr) {
+                throw logic_error("Pointeur de parcelle null détecté lors de la sauvegarde");
+            }
 
-        if (parcelle->getType() == "ZU")
-        {
-            Zu *zu = dynamic_cast<Zu *>(parcelle);
-            file << zu->getPourcentageConstructible() << " " << zu->getSurfaceConstruite() << " ";
-        }
-        else if (parcelle->getType() == "ZAU")
-        {
-            Zau *zau = dynamic_cast<Zau *>(parcelle);
-            file << zau->getPourcentageConstructible() << " ";
-        }
-        else if (parcelle->getType() == "ZA")
-        {
-            Za *za = dynamic_cast<Za *>(parcelle);
-            file << za->getTypeCulture() << " ";
-        }
+            file << parcelle->getType() << " " << parcelle->getNumero() << " " << parcelle->getProprietaire() << " ";
 
-        // passer à la ligne
-        file << "\n";
+            if (parcelle->getType() == "ZU")
+            {
+                Zu *zu = dynamic_cast<Zu *>(parcelle);
+                if (zu == nullptr) {
+                    throw logic_error("Erreur de cast pour la parcelle ZU numéro " + to_string(parcelle->getNumero()));
+                }
+                file << zu->getPourcentageConstructible() << " " << zu->getSurfaceConstruite() << " ";
+            }
+            else if (parcelle->getType() == "ZAU")
+            {
+                Zau *zau = dynamic_cast<Zau *>(parcelle);
+                if (zau == nullptr) {
+                    throw logic_error("Erreur de cast pour la parcelle ZAU numéro " + to_string(parcelle->getNumero()));
+                }
+                file << zau->getPourcentageConstructible() << " ";
+            }
+            else if (parcelle->getType() == "ZA")
+            {
+                Za *za = dynamic_cast<Za *>(parcelle);
+                if (za == nullptr) {
+                    throw logic_error("Erreur de cast pour la parcelle ZA numéro " + to_string(parcelle->getNumero()));
+                }
+                file << za->getTypeCulture() << " ";
+            }
 
-        // écrire les coordonnées
-        vector<Point2D<int>> listeSommets = parcelle->getForme().getSommets();
-        for (const Point2D<int> &point : listeSommets)
-        {
-            file << point << " ";
+            // passer à la ligne
+            file << "\n";
+
+            // écrire les coordonnées
+            vector<Point2D<int>> listeSommets = parcelle->getForme().getSommets();
+            for (const Point2D<int> &point : listeSommets)
+            {
+                file << point << " ";
+            }
+            file << "\n";
+
+            // Vérifier si l'écriture s'est bien déroulée
+            if (!file.good()) {
+                throw ios_base::failure("Erreur lors de l'écriture dans le fichier");
+            }
         }
-        file << "\n";
+        file.close();
+    } catch (const ios_base::failure &e) {
+        file.close();
+        throw runtime_error("Erreur d'I/O lors de la sauvegarde : " + string(e.what()));
+    } catch (const exception &e) {
+        file.close();
+        throw;
     }
-
-    file.close();
 }
 
 // Surcharge de l'opérateur <<
