@@ -23,7 +23,6 @@ using namespace std;
 class Zu : public Constructible, public Parcelle
 {
 protected:
-
     /**
      * @brief Pourcentage constructible de la parcelle, une ZU a déjà un pourcentage constructible en m².
      *

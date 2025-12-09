@@ -26,7 +26,7 @@
 
 using namespace std;
 
-class carte
+class Carte
 {
 protected:
     vector<Parcelle *> listeParcelles;
@@ -38,13 +38,13 @@ public:
      *
      * @param pathToFile
      */
-    carte(string pathToFile);
+    Carte(string pathToFile);
 
     /**
      * @brief Destroy the carte object
-     * 
+     *
      */
-    ~carte();
+    ~Carte();
 
     /**
      * @brief Méthode permettant de sauvegarder la carte dans un fichier
@@ -53,5 +53,5 @@ public:
      */
     void sauvegarder(string pathToFile);
 
-    friend ostream &operator<<(ostream &os, const carte &c);
+    friend ostream &operator<<(ostream &os, const Carte &c);
 };

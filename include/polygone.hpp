@@ -60,9 +60,12 @@ public:
      */
     Polygone(const Polygone<T> &poly)
     {
-        try {
+        try
+        {
             sommets = poly.sommets;
-        } catch (const exception &e) {
+        }
+        catch (const exception &e)
+        {
             throw invalid_argument("Erreur lors de la copie du Polygone : " + string(e.what()));
         }
     }
@@ -129,9 +132,12 @@ public:
 template <typename T>
 const vector<Point2D<T>> &Polygone<T>::getSommets() const
 {
-    try {
+    try
+    {
         return sommets;
-    } catch (const exception &e) {
+    }
+    catch (const exception &e)
+    {
         throw runtime_error("Erreur lors de la récupération des sommets : " + string(e.what()));
     }
 }
@@ -139,13 +145,17 @@ const vector<Point2D<T>> &Polygone<T>::getSommets() const
 template <typename T>
 void Polygone<T>::setSommets(const vector<Point2D<T>> &listeSommets)
 {
-    try {
-        if (listeSommets.size() < 3) {
+    try
+    {
+        if (listeSommets.size() < 3)
+        {
             throw invalid_argument("Un polygone doit avoir au moins 3 sommets.");
         }
         sommets = listeSommets;
         verifierSensTrigonometrigue();
-    } catch (const exception &e) {
+    }
+    catch (const exception &e)
+    {
         throw invalid_argument("Erreur lors de la modification des sommets : " + string(e.what()));
     }
 }
@@ -153,12 +163,16 @@ void Polygone<T>::setSommets(const vector<Point2D<T>> &listeSommets)
 template <typename T>
 void Polygone<T>::addPoint(const Point2D<T> &p)
 {
-    try {
+    try
+    {
         sommets.push_back(p);
-        if (sommets.size() >= 3) {
+        if (sommets.size() >= 3)
+        {
             verifierSensTrigonometrigue();
         }
-    } catch (const exception &e) {
+    }
+    catch (const exception &e)
+    {
         sommets.pop_back();
         throw invalid_argument("Erreur lors de l'ajout d'un point : " + string(e.what()));
     }
@@ -167,11 +181,15 @@ void Polygone<T>::addPoint(const Point2D<T> &p)
 template <typename T>
 void Polygone<T>::translate(const T &dx, const T &dy)
 {
-    try {
-        for (auto &sommet : sommets) {
+    try
+    {
+        for (auto &sommet : sommets)
+        {
             sommet.translate(dx, dy);
         }
-    } catch (const exception &e) {
+    }
+    catch (const exception &e)
+    {
         throw runtime_error("Erreur lors de la translation du polygone : " + string(e.what()));
     }
 }
@@ -190,23 +208,29 @@ ostream &operator<<(ostream &os, const Polygone<T> &poly)
 template <typename T>
 T Polygone<T>::calculerSurface() const
 {
-    try {
-        if (sommets.size() < 3) {
+    try
+    {
+        if (sommets.size() < 3)
+        {
             throw invalid_argument("Un polygone doit avoir au moins 3 sommets pour calculer sa surface.");
         }
         T surface_buff = 0;
         size_t n = sommets.size();
-        for (size_t i = 0; i < n; ++i) {
+        for (size_t i = 0; i < n; ++i)
+        {
             const Point2D<T> &p1 = sommets[i];
             const Point2D<T> &p2 = sommets[(i + 1) % n];
             surface_buff += p1.getX() * p2.getY() - p2.getX() * p1.getY();
         }
         T s = abs(surface_buff) / static_cast<T>(2);
-        if (s <= 0) {
+        if (s <= 0)
+        {
             throw invalid_argument("Surface négative ou nulle : ajout invalide.");
         }
         return s;
-    } catch (const exception &e) {
+    }
+    catch (const exception &e)
+    {
         throw runtime_error("Erreur lors du calcul de la surface : " + string(e.what()));
     }
 }
@@ -217,48 +241,53 @@ Polygone<T>::~Polygone() = default;
 template <typename T>
 void Polygone<T>::verifierSensTrigonometrigue() const
 {
-    try {
+    try
+    {
         size_t n = sommets.size();
-        if (n < 3) {
+        if (n < 3)
+        {
             throw invalid_argument("Un polygone doit au moins avoir 3 points.");
         }
 
-    // 1. Trouver le point en bas à gauche
-    size_t idxO = 0;
-    for (size_t i = 1; i < n; ++i)
-    {
-        if ((sommets[i].getY() < sommets[idxO].getY()) ||
-            (sommets[i].getY() == sommets[idxO].getY() && sommets[i].getX() < sommets[idxO].getX()))
+        // 1. Trouver le point en bas à gauche
+        size_t idxO = 0;
+        for (size_t i = 1; i < n; ++i)
         {
-            idxO = i;
+            if ((sommets[i].getY() < sommets[idxO].getY()) ||
+                (sommets[i].getY() == sommets[idxO].getY() && sommets[i].getX() < sommets[idxO].getX()))
+            {
+                idxO = i;
+            }
+        }
+
+        const Point2D<T> &O = sommets[idxO];
+
+        // 2. Pour chaque couple (Pi, Pi+1)
+        for (size_t k = 0; k < n; ++k)
+        {
+            const Point2D<T> &Pi = sommets[k];
+            const Point2D<T> &Pi1 = sommets[(k + 1) % n];
+
+            if (&Pi == &O || &Pi1 == &O)
+                continue; // on saute si l’un des deux est O
+
+            // vecteurs OPi et OPi+1
+            T vix = Pi.getX() - O.getX();
+            T viy = Pi.getY() - O.getY();
+            T vjx = Pi1.getX() - O.getX();
+            T vjy = Pi1.getY() - O.getY();
+
+            // produit scalaire
+            T dot = vix * vjx + viy * vjy;
+
+            if (dot <= 0)
+            {
+                throw invalid_argument("Les points ne sont pas dans le sens trigonométrique (produit scalaire non positif).");
+            }
         }
     }
-
-    const Point2D<T> &O = sommets[idxO];
-
-    // 2. Pour chaque couple (Pi, Pi+1)
-    for (size_t k = 0; k < n; ++k)
+    catch (const exception &e)
     {
-        const Point2D<T> &Pi = sommets[k];
-        const Point2D<T> &Pi1 = sommets[(k + 1) % n];
-
-        if (&Pi == &O || &Pi1 == &O)
-            continue; // on saute si l’un des deux est O
-
-        // vecteurs OPi et OPi+1
-        T vix = Pi.getX() - O.getX();
-        T viy = Pi.getY() - O.getY();
-        T vjx = Pi1.getX() - O.getX();
-        T vjy = Pi1.getY() - O.getY();
-
-        // produit scalaire
-        T dot = vix * vjx + viy * vjy;
-
-        if (dot <= 0) {
-            throw invalid_argument("Les points ne sont pas dans le sens trigonométrique (produit scalaire non positif).");
-        }
-    }
-    } catch (const exception &e) {
         throw invalid_argument("Erreur lors de la vérification du sens trigonométrique : " + string(e.what()));
     }
 }

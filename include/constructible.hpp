@@ -22,10 +22,9 @@
 class Constructible
 {
 public:
-
     /**
      * @brief Calcule la surface constructible restante, méthode virtuelle pure
-     * 
+     *
      * @return float surface constructible restante
      */
     virtual float surfaceConstructible() const = 0;

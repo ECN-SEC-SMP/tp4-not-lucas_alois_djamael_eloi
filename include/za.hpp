@@ -85,5 +85,4 @@ private:
          * @param os flux de sortie
          */
         void afficher(ostream &os) const override;
-
 };

@@ -4,12 +4,12 @@ SEC 2
 
 - Eloi Tourangin - <eloi.tourangin@eleves.ec-nantes.fr>
 - Lucas Oros - <lucas.oros@eleves.ec-nantes.fr>
-- Djamael Lahamion - <djamael.lahamion@eleves.ec-nantes.fr> (/!\ /!\ pas de PC pour ce TP /!\ /!\)
+- Djamael Lahamion - <djamael.lahamion@eleves.ec-nantes.fr> (/!\ /!\ pas de PC pour ce TP /!\ /!\\)
 - Aloïs Guillon - <alois.guillon@eleves.ec-nantes.fr>
 
-# Organisation du groupe
+## Organisation du groupe
 
-## Répartition initiale — Cours 1
+### Répartition initiale — Cours 1
 
 Chaque membre a reçu une partie du projet à réaliser :
 
@@ -23,20 +23,19 @@ Chaque membre a reçu une partie du projet à réaliser :
 
 ---
 
-## Répartition — Cours 2
+### Répartition — Cours 2
 
 - **Eloi** : classe `Carte`
+- **Eloi** : Ajout des exceptions dans toutes les classes (et tests dans le main)
+- **Eloi** : Rédaction docxygen pour toutes les classes/méthodes
 - **Lucas & Djamaël** : classes `ZA`, `ZN`, `ZU`
 
 ---
 
-## 📌 Bonus & Finalisation
+## Bonus & Finalisation
 
 - **Djamaël** : réalisation du **Bonus 1**
 - **Lucas** : rédaction et organisation des **tests dans le `main`**
-
-
-
 
 ## Table des matières
 
@@ -49,19 +48,19 @@ Chaque membre a reçu une partie du projet à réaliser :
 
 ### Méthode 1 : Utiliser make
 
-\\\ash
+```bash
 # Compiler
 make
 
 # Exécuter
 ./build/main.out
-\\\
+```
 
 ### Méthode 2 : Utiliser le script bash
 
-\\\ash
+```bash
 ./build_and_execute.sh
-\\\
+```
 
 ---
 
@@ -124,12 +123,13 @@ La classe Polygone représente une figure géométrique définie par une série 
 
 Dans ce test, nous créons un polygone en utilisant une liste de sommets définis par des objets point2d. Nous affichons les sommets du polygone initial, puis nous créons une copie du polygone en utilisant le constructeur de recopie. Nous affichons les sommets du polygone copié pour vérifier qu'ils correspondent à ceux de l'original. Ensuite, nous appliquons une translation au polygone copié et affichons ses nouveaux sommets pour confirmer que la translation a été effectuée correctement. Enfin, nous vérifions que le polygone original n'a pas été modifié après la translation du polygone copié, assurant ainsi l'intégrité des données. Nous terminons par calculer la surface d'un polygone avec 5 sommets.
 
-#### Gestion des Exceptions
+#### Gestion des exceptions de Polygone
 
 La classe Polygone effectue plusieurs validations :
+
 - **Nombre de sommets** : Lève une exception \invalid_argument\ si le polygone possède moins de 3 sommets (un polygone valide doit en avoir au moins 3).
 - **Sens trigonométrique** : Vérifie que les sommets sont ordonnés dans le sens trigonométrique (antihoraire). Si ce n'est pas le cas, une exception \invalid_argument\ est levée lors de la construction ou de la modification via \setSommets\.
-- **Opérations supplémentaires** : Les méthodes \ddPoint\, \	ranslate\, \calculerSurface\ et \getSommets\ enveloppent leurs opérations dans des try-catch pour capturer et relancer des exceptions avec des messages contextualisés.
+- **Opérations supplémentaires** : Les méthodes \addPoint\, \translate\, \calculerSurface\ et \getSommets\ enveloppent leurs opérations dans des try-catch pour capturer et relancer des exceptions avec des messages contextualisés.
 
 ---
 
@@ -158,9 +158,10 @@ La classe Parcelle modélise une unité foncière du cadastre. Chaque parcelle p
 
 Pas de test possible
 
-#### Gestion des Exceptions
+#### Gestion des exceptions de Parcelle
 
 La classe Parcelle valide les données au moment de la construction et lors des modifications :
+
 - **Numéro de parcelle** : Les constructeurs et la méthode \setNumero()\ vérifient que le numéro est strictement positif (> 0). Une exception \invalid_argument\ est levée sinon.
 - **Propriétaire** : Les constructeurs et la méthode \setProprietaire()\ s'assurent que le propriétaire n'est pas une chaîne vide. Une exception \invalid_argument\ est levée en cas de chaîne vide.
 - **Forme géométrique** : La méthode \setForme()\ valide que le polygone fourni possède au moins 3 sommets, levant une exception \invalid_argument\ si ce n'est pas le cas.
@@ -183,19 +184,19 @@ La classe abstraite Constructible représente une parcelle sur laquelle une cons
 
 Pas de test possible
 
-#### Gestion des Exceptions
+#### Gestion des exceptions de Constructible
 
 La classe Constructible est abstraite et ne possède pas de méthode concrète. Cependant, les exceptions levées par les classes Parcelle (classe parente) et Constructible (interface) se propagent vers les classes dérivées (ZU, ZAU, Za). Les exceptions sont gérées au niveau de ces classes dérivées qui héritent des validations de Parcelle.
 
 ---
 
-### Classe zu
+### Classe Zu
 
-#### Description de zu
+#### Description de Zu
 
 La classe ZU décrit une parcelle en zone urbaine. Elle est constructible et possède en plus une surface déjà construite. Sa méthode surfaceConstructible() renvoie la surface encore disponible pour la construction, en tenant compte du pourcentage constructible et de la surface déjà bâtie. L'affichage mentionne explicitement qu'il s'agit d'une ZU.
 
-#### Méthodes de zu
+#### Méthodes de Zu
 
 | Méthode | Description |
 |---------|-------------|
@@ -205,7 +206,7 @@ La classe ZU décrit une parcelle en zone urbaine. Elle est constructible et pos
 | getPourcentageConstructible() | Retourne le pourcentage constructible de la parcelle. |
 | friend ostream& operator<<(ostream& os, const Zu& zu) | Surcharge de l'opérateur << pour afficher les informations d'une ZU. |
 
-#### Tests de zu
+#### Tests de Zu
 
 Ce test vérifie le bon fonctionnement d'une parcelle de type ZU (Zone Urbaine), notamment la gestion de sa surface construite et de sa surface constructible restante.
 Une parcelle n°43 est créée avec un polygone rectangulaire simple, permettant de valider le calcul automatique de la surface (12 m²). Le pourcentage constructible fixé à 15 % est appliqué pour déterminer la surface maximale autorisée.
@@ -217,9 +218,10 @@ L'ensemble permet de confirmer :
 - le calcul de la surface restante disponible,
 - l'affichage complet et cohérent des informations propres à une ZU.
 
-#### Gestion des Exceptions
+#### Gestion des exceptions de Zu
 
 La classe ZU hérite de Parcelle et bénéficie de sa validation. Les exceptions suivantes peuvent être levées :
+
 - **Numéro invalide** : Une exception \invalid_argument\ est levée si le numéro  0 lors de la construction.
 - **Propriétaire vide** : Une exception \invalid_argument\ est levée si le propriétaire est une chaîne vide lors de la construction.
 - **Polygone invalide** : Une exception \invalid_argument\ est levée si le polygone a moins de 3 sommets ou n'est pas dans le sens trigonométrique.
@@ -227,13 +229,13 @@ Ces validations s'effectuent lors du constructeur et lors des appels à \setNume
 
 ---
 
-### Classe zau
+### Classe Zau
 
-#### Description de zau
+#### Description de Zau
 
 La classe ZAU représente une zone à urbaniser. Elle est également constructible mais ne possède pas de surface construite initiale. La surface constructible correspond à la proportion autorisée par le PLU appliquée à la surface totale. L'affichage la distingue clairement comme ZAU.
 
-#### Méthodes de zau
+#### Méthodes de Zau
 
 | Méthode | Description |
 |---------|-------------|
@@ -241,7 +243,7 @@ La classe ZAU représente une zone à urbaniser. Elle est également constructib
 | getPourcentageConstructible() | Retourne le pourcentage constructible de la parcelle. |
 | friend ostream& operator<<(ostream& os, const Zau& zau) | Surcharge de l'opérateur << pour afficher les informations d'une ZAU. |
 
-#### Tests de zau
+#### Tests de Zau
 
 Ce test valide le comportement d'une parcelle de type ZAU (Zone à Urbaniser), dont la surface constructible correspond uniquement au pourcentage autorisé, puisqu'aucune surface n'est déjà bâtie dans ce type de zone.
 La parcelle n°14 est définie à partir d'un polygone triangulaire simple, ce qui permet de vérifier correctement le calcul automatique de la surface (6 m²).
@@ -252,9 +254,10 @@ Le test permet ainsi de confirmer :
 - la prise en compte du pourcentage constructible propre aux ZAU,
 - l'affichage cohérent des informations spécifiques au type ZAU.
 
-#### Gestion des Exceptions
+#### Gestion des exceptions de Zau
 
 La classe ZAU hérite de Parcelle et applique les mêmes validations :
+
 - **Numéro invalide** : Une exception \invalid_argument\ est levée si le numéro  0 lors de la construction.
 - **Propriétaire vide** : Une exception \invalid_argument\ est levée si le propriétaire est une chaîne vide lors de la construction.
 - **Polygone invalide** : Une exception \invalid_argument\ est levée si le polygone a moins de 3 sommets ou n'est pas dans le sens trigonométrique.
@@ -262,19 +265,19 @@ Ces validations s'effectuent lors du constructeur et lors des appels à \setNume
 
 ---
 
-### Classe zn
+### Classe Zn
 
-#### Description de zn
+#### Description de Zn
 
 La classe ZN représente une zone naturelle ou forestière. Elle n'est pas constructible. L'affichage indique explicitement son statut de zone non constructible.
 
-#### Méthodes de zn
+#### Méthodes de Zn
 
 | Méthode | Description |
 |---------|-------------|
 | setType(type) | Définit le type de la parcelle à "ZN". |
 
-#### Tests de zn
+#### Tests de Zn
 
 Ce test vérifie le comportement d'une parcelle de type ZN (Zone Naturelle), zone dans laquelle aucune construction n'est autorisée.
 La parcelle n°67 est définie à partir d'un polygone rectangulaire, permettant de valider le calcul automatique de la surface (58 m²).
@@ -285,9 +288,10 @@ L'objectif du test est principalement de s'assurer que :
 - aucune information relative à la constructibilité n'apparaît, conformément au statut non constructible des ZN.
 - Ce test confirme ainsi le comportement attendu d'une parcelle naturelle dans le cadre du PLU.
 
-#### Gestion des Exceptions
+#### Gestion des exceptions de Zn
 
 La classe ZN hérite de Parcelle et applique les mêmes validations :
+
 - **Numéro invalide** : Une exception \invalid_argument\ est levée si le numéro  0 lors de la construction.
 - **Propriétaire vide** : Une exception \invalid_argument\ est levée si le propriétaire est une chaîne vide lors de la construction.
 - **Polygone invalide** : Une exception \invalid_argument\ est levée si le polygone a moins de 3 sommets ou n'est pas dans le sens trigonométrique.
@@ -295,13 +299,13 @@ Ces validations s'effectuent lors du constructeur et lors des appels à \setNume
 
 ---
 
-### Classe za
+### Classe Za
 
-#### Description de za
+#### Description de Za
 
 La classe ZA décrit une zone agricole, dérivant d'une ZN mais avec un type de culture associé. Elle n'est généralement pas constructible, sauf pour des bâtiments agricoles sous contraintes strictes (10 % de la surface et 200 m²). La méthode surfaceConstructible() applique ces règles spécifiques. L'affichage inclut le type de culture.
 
-#### Méthodes de za
+#### Méthodes de Za
 
 | Méthode | Description |
 |---------|-------------|
@@ -311,7 +315,7 @@ La classe ZA décrit une zone agricole, dérivant d'une ZN mais avec un type de 
 | peutConstruireBatAgricole(surfaceConstruite) | Vérifie et affiche si une construction de bâtiment agricole est possible selon les règles du PLU. |
 | friend ostream& operator<<(ostream& os, const Za& za) | Surcharge de l'opérateur << pour afficher les informations d'une ZA. |
 
-#### Tests de za
+#### Tests de Za
 
 Ce test évalue le fonctionnement d'une parcelle de type ZA (Zone Agricole), caractérisée par l'ajout d'un type de culture et par un régime spécifique de constructibilité très limité.
 La parcelle n°92 est définie à partir d'un polygone rectangulaire afin de valider le calcul automatique de la surface (75 m²). Le test vérifie également la bonne prise en compte de l'attribut supplémentaire propre aux ZA : ici, la culture déclarée est Céréales.
@@ -323,9 +327,10 @@ L'objectif est de confirmer que :
 - aucune surface constructible n'est indiquée (sauf règles particulières pour bâtiments agricoles, non sollicitées dans ce test).
 - Ce test assure ainsi la conformité de l'implémentation d'une zone agricole dans le PLU.
 
-#### Gestion des Exceptions
+#### Gestion des exceptions de Za
 
 La classe ZA hérite de Parcelle et applique les mêmes validations :
+
 - **Numéro invalide** : Une exception \invalid_argument\ est levée si le numéro  0 lors de la construction.
 - **Propriétaire vide** : Une exception \invalid_argument\ est levée si le propriétaire est une chaîne vide lors de la construction.
 - **Polygone invalide** : Une exception \invalid_argument\ est levée si le polygone a moins de 3 sommets ou n'est pas dans le sens trigonométrique.
@@ -333,26 +338,27 @@ Ces validations s'effectuent lors du constructeur et lors des appels à \setNume
 
 ---
 
-### Classe carte
+### Classe Carte
 
-#### Description de carte
+#### Description de Carte
 
 La classe Carte regroupe un ensemble de parcelles et gère la surface totale représentée. Elle permet de construire une carte à partir d'un fichier de description, en interprétant automatiquement les différents types de parcelles. Elle offre également la fonctionnalité de sauvegarde dans un fichier au même format. Cette classe constitue le niveau global d'organisation du cadastre.
 
-#### Méthodes de carte
+#### Méthodes de Carte
 
 | Méthode | Description |
 |---------|-------------|
-| carte(pathToFile) | Constructeur chargeant les parcelles depuis un fichier. |
+| Carte(pathToFile) | Constructeur chargeant les parcelles depuis un fichier. |
 | sauvegarder(pathToFile) | Méthode permettant de sauvegarder la carte dans un fichier au même format. |
 
-#### Tests de carte
+#### Tests de Carte
 
 Ce test valide le bon fonctionnement complet du projet en chargeant un fichier cadastral et en affichant toutes les parcelles qu'il contient. Les tests permettent de vérifier que le chargement interprète correctement les différents types de parcelles (ZU, ZAU, ZN, ZA) ainsi que leurs propriétés spécifiques.
 
-#### Gestion des Exceptions
+#### Gestion des exceptions de Carte
 
 La classe Carte gère les exceptions au moment du chargement et de la sauvegarde des fichiers :
+
 - **Fichier d'entrée** : Si le fichier spécifié n'existe pas ou ne peut pas être ouvert, une exception \
 untime_error\ est levée avec un message descriptif.
 - **Validation du type de parcelle** : Si un type de parcelle invalide est rencontré dans le fichier, une exception \invalid_argument\ est levée.

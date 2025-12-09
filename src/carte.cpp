@@ -23,7 +23,7 @@
 
 using namespace std;
 
-carte::carte(string pathToFile)
+Carte::Carte(string pathToFile)
 {
     // ouvrir le fichier
     ifstream file(pathToFile);
@@ -31,8 +31,9 @@ carte::carte(string pathToFile)
     {
         throw runtime_error("Erreur lors de l'ouverture du fichier : " + pathToFile);
     }
-    
-    try {
+
+    try
+    {
         // lire les données
         string line = "";
         string type = "";
@@ -51,7 +52,7 @@ carte::carte(string pathToFile)
             pConstructible = "";
             surfaceConstruite = "";
             culture = "";
-            
+
             // Récupérer le premier mot
             type = line.substr(0, line.find(' ')); // Entre le début de la ligne et le premier espace
             // printf("Type de parcelle : %s\n", type.c_str());
@@ -64,14 +65,14 @@ carte::carte(string pathToFile)
             proprietaire = line.substr(0, line.find(' ')); // Entre le début de la ligne et le premier espace
             // printf("Propriétaire de parcelle : %s\n", proprietaire.c_str());
             line = line.substr(line.find(' ') + 1);
-            
+
             if (type == "ZU")
             {
                 // récupérer pConstructible et surfaceConstruite
                 pConstructible = line.substr(0, line.find(' '));
                 // printf("Pourcentage constructible : %s\n", pConstructible.c_str());
                 line = line.substr(line.find(' ') + 1);
-                 surfaceConstruite = line.substr(0, line.find(' '));
+                surfaceConstruite = line.substr(0, line.find(' '));
                 // printf("Surface construite : %s\n", surfaceConstruite.c_str());
             }
             else if (type == "ZAU")
@@ -99,8 +100,8 @@ carte::carte(string pathToFile)
                 line = line.substr(line.find(' ') + 1);
 
                 // isoler les x et y
-                Point2D<int> monPoint(  stoi(coord.substr(coord.find('[') + 1, coord.find(';') - coord.find('[') - 1)),
-                                        stoi(coord.substr(coord.find(';') + 1, coord.find(']') - coord.find(';') - 1)));
+                Point2D<int> monPoint(stoi(coord.substr(coord.find('[') + 1, coord.find(';') - coord.find('[') - 1)),
+                                      stoi(coord.substr(coord.find(';') + 1, coord.find(']') - coord.find(';') - 1)));
 
                 mesSommets.push_back(monPoint);
             }
@@ -139,10 +140,13 @@ carte::carte(string pathToFile)
             this->surfaceTotale += parcelle->getSurface();
         }
         file.close();
-    } catch (const exception &e) {
+    }
+    catch (const exception &e)
+    {
         file.close();
         // Libérer la mémoire allouée avant de relancer l'exception
-        for (Parcelle *parcelle : listeParcelles) {
+        for (Parcelle *parcelle : listeParcelles)
+        {
             delete parcelle;
         }
         listeParcelles.clear();
@@ -150,7 +154,7 @@ carte::carte(string pathToFile)
     }
 }
 
-carte::~carte()
+Carte::~Carte()
 {
     for (Parcelle *parcelle : listeParcelles)
     {
@@ -160,7 +164,7 @@ carte::~carte()
     listeParcelles.clear();
 }
 
-void carte::sauvegarder(string pathToFile)
+void Carte::sauvegarder(string pathToFile)
 {
     ofstream file(pathToFile);
     if (!file.is_open())
@@ -168,10 +172,12 @@ void carte::sauvegarder(string pathToFile)
         throw runtime_error("Erreur lors de l'ouverture du fichier en écriture : " + pathToFile);
     }
 
-    try {
+    try
+    {
         for (Parcelle *parcelle : listeParcelles)
         {
-            if (parcelle == nullptr) {
+            if (parcelle == nullptr)
+            {
                 throw logic_error("Pointeur de parcelle null détecté lors de la sauvegarde");
             }
 
@@ -180,7 +186,8 @@ void carte::sauvegarder(string pathToFile)
             if (parcelle->getType() == "ZU")
             {
                 Zu *zu = dynamic_cast<Zu *>(parcelle);
-                if (zu == nullptr) {
+                if (zu == nullptr)
+                {
                     throw logic_error("Erreur de cast pour la parcelle ZU numéro " + to_string(parcelle->getNumero()));
                 }
                 file << zu->getPourcentageConstructible() << " " << zu->getSurfaceConstruite() << " ";
@@ -188,7 +195,8 @@ void carte::sauvegarder(string pathToFile)
             else if (parcelle->getType() == "ZAU")
             {
                 Zau *zau = dynamic_cast<Zau *>(parcelle);
-                if (zau == nullptr) {
+                if (zau == nullptr)
+                {
                     throw logic_error("Erreur de cast pour la parcelle ZAU numéro " + to_string(parcelle->getNumero()));
                 }
                 file << zau->getPourcentageConstructible() << " ";
@@ -196,7 +204,8 @@ void carte::sauvegarder(string pathToFile)
             else if (parcelle->getType() == "ZA")
             {
                 Za *za = dynamic_cast<Za *>(parcelle);
-                if (za == nullptr) {
+                if (za == nullptr)
+                {
                     throw logic_error("Erreur de cast pour la parcelle ZA numéro " + to_string(parcelle->getNumero()));
                 }
                 file << za->getTypeCulture() << " ";
@@ -214,22 +223,27 @@ void carte::sauvegarder(string pathToFile)
             file << "\n";
 
             // Vérifier si l'écriture s'est bien déroulée
-            if (!file.good()) {
+            if (!file.good())
+            {
                 throw ios_base::failure("Erreur lors de l'écriture dans le fichier");
             }
         }
         file.close();
-    } catch (const ios_base::failure &e) {
+    }
+    catch (const ios_base::failure &e)
+    {
         file.close();
         throw runtime_error("Erreur d'I/O lors de la sauvegarde : " + string(e.what()));
-    } catch (const exception &e) {
+    }
+    catch (const exception &e)
+    {
         file.close();
         throw;
     }
 }
 
 // Surcharge de l'opérateur <<
-ostream &operator<<(ostream &os, const carte &c)
+ostream &operator<<(ostream &os, const Carte &c)
 {
     os << "\nCarte avec " << c.listeParcelles.size() << " parcelles et une surface totale de " << c.surfaceTotale << " m²\n";
 
