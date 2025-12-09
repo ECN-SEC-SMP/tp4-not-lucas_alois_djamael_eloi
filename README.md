@@ -7,6 +7,14 @@ SEC 2
 - Djamael Lahamion - <djamael.lahamion@eleves.ec-nantes.fr> (/!\ /!\ pas de PC pour ce TP /!\ /!\\)
 - Aloïs Guillon - <alois.guillon@eleves.ec-nantes.fr>
 
+## Table des matières
+
+1. [Organisation du groupe](#organisation-du-groupe)
+2. [Compilation et Exécution](#compilation-et-exécution)
+3. [Diagramme des classes](#diagramme-des-classes)
+4. [Description des classes](#description-des-classes)
+5. [Concepts Clés](#concepts-clés)
+
 ## Organisation du groupe
 
 ### Répartition initiale — Cours 1
@@ -21,28 +29,17 @@ Chaque membre a reçu une partie du projet à réaliser :
 
 **Objectif atteint :** toutes les classes prévues pour le premier cours ont été terminées.
 
----
-
 ### Répartition — Cours 2
 
 - **Eloi** : classe `Carte`
-- **Eloi** : Ajout des exceptions dans toutes les classes (et tests dans le main)
-- **Eloi** : Rédaction docxygen pour toutes les classes/méthodes
 - **Lucas & Djamaël** : classes `ZA`, `ZN`, `ZU`
 
----
-
-## Bonus & Finalisation
+### Bonus & Finalisation
 
 - **Djamaël** : réalisation du **Bonus 1**
 - **Lucas** : rédaction et organisation des **tests dans le `main`**
-
-## Table des matières
-
-1. [Compilation et Exécution](#compilation-et-exécution)
-2. [Diagramme des classes](#diagramme-des-classes)
-3. [Description des classes](#description-des-classes)
-4. [Concepts Clés](#concepts-clés)
+- **Eloi** : Ajout des exceptions dans toutes les classes (et tests dans le main)
+- **Eloi** : Rédaction docxygen pour toutes les classes/méthodes
 
 ## Compilation et Exécution
 
@@ -61,8 +58,6 @@ make
 ```bash
 ./build_and_execute.sh
 ```
-
----
 
 ## Diagramme des classes
 
