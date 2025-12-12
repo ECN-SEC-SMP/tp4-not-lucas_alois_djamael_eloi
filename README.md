@@ -40,6 +40,7 @@ Chaque membre a reçu une partie du projet à réaliser :
 - **Lucas** : rédaction et organisation des **tests dans le `main`**
 - **Eloi** : Ajout des exceptions dans toutes les classes (et tests dans le main)
 - **Eloi** : Rédaction docxygen pour toutes les classes/méthodes
+- **Eloi** : realisation du **Bonus 2** et correction du **Bonus 1**
 
 ## Compilation et Exécution
 
@@ -109,6 +110,7 @@ La classe Polygone représente une figure géométrique définie par une série 
 | translate(dx, dy) | Effectue une translation du polygone en déplaçant tous ses sommets. |
 | calculerSurface() | Calcule et retourne la surface du polygone en utilisant la formule du shoelace. |
 | verifierSensTrigonometrigue() | Vérifie si les sommets du polygone sont ordonnés dans le sens trigonométrique (antihoraire). |
+| verifierPolygoneCroise() | Vérifie si le polygone est croisé (auto-intersectant). |
 | friend ostream& operator<<(ostream& os, const Polygone\<T\>& poly) | Surcharge de l'opérateur << pour afficher tous les sommets du polygone. |
 
 #### Explication des choix faits pour la classe Polygone

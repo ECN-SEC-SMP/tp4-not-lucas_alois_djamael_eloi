@@ -369,17 +369,55 @@ int main()
 
     cout << "Test des exceptions - sens trigo" << endl;
 
-    vector<Point2D<double>> listeSommets_test = {Point2D<double>(0.0, 0.0), Point2D<double>(1.0, 0.0), Point2D<double>(1.0, 1.0), Point2D<double>(0.0, 1.0)};
-    Polygone<double> poly_test(listeSommets_test);
-    cout << "PASS" << endl;
+    try
+    {
+        vector<Point2D<double>> listeSommets_test = {{0.0, 0.0}, {1.0, 0.0}, {1.0, 1.0}, {0.0, 1.0}};
 
-    vector<Point2D<double>> listeSommets_test2 = {Point2D<double>(0.0, 0.0), Point2D<double>(1.0, 1.0), Point2D<double>(0.0, 1.0), Point2D<double>(1.0, 0.0)};
-    // Polygone<double> poly_test2(listeSommets_test2);
-    cout << "ERROR" << endl; // Ne doit pas passer ici => test ok ici
+        Polygone<double> poly_test(listeSommets_test);
+        cout << "Test 1 : PASS (polygone correct)" << endl;
+    }
+    catch (const std::exception &e)
+    {
+        cout << "Test 1 : ERROR -> " << e.what() << endl;
+    }
 
-    vector<Point2D<double>> listeSommets_test3 = {Point2D<double>(0.0, 0.0), Point2D<double>(1.0, 1.0)};
-    // Polygone<double> poly_test3(listeSommets_test3);
-    cout << "ERROR" << endl; // Ne doit pas passer ici => test ok ici
+    try
+    {
+        vector<Point2D<double>> listeSommets_test2 = {{0.0, 0.0}, {1.0, 1.0}, {0.0, 1.0}, {1.0, 0.0}};
+
+        Polygone<double> poly_test2(listeSommets_test2);
+        cout << "Test 2 : ERROR (aurait dû lever exception)" << endl;
+    }
+    catch (const std::exception &e)
+    {
+        cout << "Test 2 : PASS (exception attrapée) -> " << e.what() << endl;
+    }
+
+    try
+    {
+        vector<Point2D<double>> listeSommets_test3 = {{0.0, 0.0}, {1.0, 1.0}};
+
+        Polygone<double> poly_test3(listeSommets_test3);
+        cout << "Test 3 : ERROR (aurait dû lever exception)" << endl;
+    }
+    catch (const std::exception &e)
+    {
+        cout << "Test 3 : PASS (exception attrapée) -> " << e.what() << endl;
+    }
+
+    cout << endl << "Test des exceptions - polygone croisé" << endl;
+
+    try
+    {
+        vector<Point2D<double>> listeSommets_test4 = {{0.0, 0.0}, {2.0, 2.0}, {0.0, 2.0}, {2.0, 0.0}};
+
+        Polygone<double> poly_test4(listeSommets_test4);
+        cout << "Test 1 : ERROR (aurait dû lever exception)" << endl;
+    }
+    catch (const std::exception &e)
+    {
+        cout << "Test 1 : PASS (exception attrapée) -> " << e.what() << endl;
+    }
 
     return 0;
 }

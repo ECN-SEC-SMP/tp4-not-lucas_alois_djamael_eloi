@@ -314,7 +314,7 @@ void Polygone<T>::verifierPolygoneCroise() const
             return; // impossible de se croiser avec moins de 4 points
         }
 
-        // Fonction lambda pour calculer le produit vectoriel (CCW)
+        // Fonction pour calculer le produit vectoriel (CCW)
         auto ccw = [](const Point2D<T> &A, const Point2D<T> &B, const Point2D<T> &C) -> T
         {
             return (B.getX() - A.getX()) * (C.getY() - A.getY()) - (B.getY() - A.getY()) * (C.getX() - A.getX());
