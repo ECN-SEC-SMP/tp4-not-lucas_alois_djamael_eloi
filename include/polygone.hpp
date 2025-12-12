@@ -48,9 +48,25 @@ public:
      *
      * @param ListeSommet Liste des sommets du polygone
      */
-    Polygone(const vector<Point2D<T>> &ListeSommet) : sommets(ListeSommet)
+    Polygone(const std::vector<Point2D<T>> &ListeSommet) : sommets(ListeSommet)
     {
-        verifierSensTrigonometrigue();
+        try
+        {
+            verifierSensTrigonometrigue();
+        }
+        catch (const std::exception &e)
+        {
+            throw std::runtime_error(std::string("Erreur dans verifierSensTrigonometrigue() : ") + e.what());
+        }
+
+        try
+        {
+            verifierPolygoneCroise();
+        }
+        catch (const std::exception &e)
+        {
+            throw std::runtime_error(std::string("Erreur dans verifierPolygoneCroise() : ") + e.what());
+        }
     }
 
     /**
@@ -125,8 +141,15 @@ public:
     /**
      * @brief Vérifie que les points du polygone sont dans le sens trigonométrique
      *
+     * @return int 1 si sens trigo, -1 si sens horaire, 0 si points alignés
      */
-    void verifierSensTrigonometrigue() const;
+    int verifierSensTrigonometrigue() const;
+
+    /**
+     * @brief Vérifie que le polygone ne se croise pas lui-même
+     *
+     */
+    void verifierPolygoneCroise() const;
 };
 
 template <typename T>
@@ -239,7 +262,7 @@ template <typename T>
 Polygone<T>::~Polygone() = default;
 
 template <typename T>
-void Polygone<T>::verifierSensTrigonometrigue() const
+int Polygone<T>::verifierSensTrigonometrigue() const
 {
     try
     {
@@ -249,45 +272,92 @@ void Polygone<T>::verifierSensTrigonometrigue() const
             throw invalid_argument("Un polygone doit au moins avoir 3 points.");
         }
 
-        // 1. Trouver le point en bas à gauche
-        size_t idxO = 0;
-        for (size_t i = 1; i < n; ++i)
+        // Calcul de la surface signée en utilisant la formule du shoelace
+        T signedArea = 0;
+        for (size_t i = 0; i < n; ++i)
         {
-            if ((sommets[i].getY() < sommets[idxO].getY()) ||
-                (sommets[i].getY() == sommets[idxO].getY() && sommets[i].getX() < sommets[idxO].getX()))
-            {
-                idxO = i;
-            }
+            const Point2D<T> &p1 = sommets[i];
+            const Point2D<T> &p2 = sommets[(i + 1) % n];
+            signedArea += p1.getX() * p2.getY() - p2.getX() * p1.getY();
         }
 
-        const Point2D<T> &O = sommets[idxO];
-
-        // 2. Pour chaque couple (Pi, Pi+1)
-        for (size_t k = 0; k < n; ++k)
+        // Positif = sens trigonométrique (counter-clockwise)
+        // Négatif = sens horaire (clockwise)
+        // Zéro = points alignés
+        if (signedArea > 0)
         {
-            const Point2D<T> &Pi = sommets[k];
-            const Point2D<T> &Pi1 = sommets[(k + 1) % n];
-
-            if (&Pi == &O || &Pi1 == &O)
-                continue; // on saute si l’un des deux est O
-
-            // vecteurs OPi et OPi+1
-            T vix = Pi.getX() - O.getX();
-            T viy = Pi.getY() - O.getY();
-            T vjx = Pi1.getX() - O.getX();
-            T vjy = Pi1.getY() - O.getY();
-
-            // produit scalaire
-            T dot = vix * vjx + viy * vjy;
-
-            if (dot <= 0)
-            {
-                throw invalid_argument("Les points ne sont pas dans le sens trigonométrique (produit scalaire non positif).");
-            }
+            return 1; // sens trigonométrique
+        }
+        else if (signedArea < 0)
+        {
+            throw invalid_argument("Les points ne sont pas dans le sens trigonométrique.");
+        }
+        else
+        {
+            throw invalid_argument("Les points sont alignés.");
         }
     }
     catch (const exception &e)
     {
         throw invalid_argument("Erreur lors de la vérification du sens trigonométrique : " + string(e.what()));
+    }
+}
+
+template <typename T>
+void Polygone<T>::verifierPolygoneCroise() const
+{
+    try
+    {
+        size_t n = sommets.size();
+        if (n < 4)
+        {
+            return; // impossible de se croiser avec moins de 4 points
+        }
+
+        // Fonction lambda pour calculer le produit vectoriel (CCW)
+        auto ccw = [](const Point2D<T> &A, const Point2D<T> &B, const Point2D<T> &C) -> T
+        {
+            return (B.getX() - A.getX()) * (C.getY() - A.getY()) - (B.getY() - A.getY()) * (C.getX() - A.getX());
+        };
+
+        // Vérifier tous les segments non-adjacents
+        for (size_t i = 0; i < n; ++i)
+        {
+            size_t i_next = (i + 1) % n;
+
+            // Commencer à j = i + 2 pour éviter les segments adjacents
+            for (size_t j = i + 2; j < n; ++j)
+            {
+                // Ne pas vérifier le dernier et le premier segment s'ils sont adjacents
+                if (i == 0 && j == n - 1)
+                {
+                    continue;
+                }
+
+                size_t j_next = (j + 1) % n;
+
+                const Point2D<T> &A = sommets[i];
+                const Point2D<T> &B = sommets[i_next];
+                const Point2D<T> &C = sommets[j];
+                const Point2D<T> &D = sommets[j_next];
+
+                // Deux segments [AB] et [CD] se croisent si:
+                // - ccw(A,C,D) et ccw(B,C,D) ont des signes opposés
+                // - ET ccw(A,B,C) et ccw(A,B,D) ont des signes opposés
+                T ccw1 = ccw(A, C, D);
+                T ccw2 = ccw(B, C, D);
+                T ccw3 = ccw(A, B, C);
+                T ccw4 = ccw(A, B, D);
+
+                if ((ccw1 * ccw2 < 0) && (ccw3 * ccw4 < 0))
+                {
+                    throw invalid_argument("Le polygone se croise lui-même.");
+                }
+            }
+        }
+    }
+    catch (const exception &e)
+    {
+        throw invalid_argument("Erreur lors de la vérification des croisements : " + string(e.what()));
     }
 }

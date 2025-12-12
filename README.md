@@ -108,6 +108,7 @@ La classe Polygone représente une figure géométrique définie par une série 
 | addPoint(p) | Ajoute un nouveau sommet au polygone. |
 | translate(dx, dy) | Effectue une translation du polygone en déplaçant tous ses sommets. |
 | calculerSurface() | Calcule et retourne la surface du polygone en utilisant la formule du shoelace. |
+| verifierSensTrigonometrigue() | Vérifie si les sommets du polygone sont ordonnés dans le sens trigonométrique (antihoraire). |
 | friend ostream& operator<<(ostream& os, const Polygone\<T\>& poly) | Surcharge de l'opérateur << pour afficher tous les sommets du polygone. |
 
 #### Explication des choix faits pour la classe Polygone
@@ -125,6 +126,20 @@ La classe Polygone effectue plusieurs validations :
 - **Nombre de sommets** : Lève une exception \invalid_argument\ si le polygone possède moins de 3 sommets (un polygone valide doit en avoir au moins 3).
 - **Sens trigonométrique** : Vérifie que les sommets sont ordonnés dans le sens trigonométrique (antihoraire). Si ce n'est pas le cas, une exception \invalid_argument\ est levée lors de la construction ou de la modification via \setSommets\.
 - **Opérations supplémentaires** : Les méthodes \addPoint\, \translate\, \calculerSurface\ et \getSommets\ enveloppent leurs opérations dans des try-catch pour capturer et relancer des exceptions avec des messages contextualisés.
+
+#### Algorithmes
+
+##### SENS TRIGONOMÉTRIQUE
+
+```algo
+écrire l'algo içi
+```
+
+##### POLYGONE CROISÉ
+
+```algo
+écrire l'algo içi
+```
 
 ---
 

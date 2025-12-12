@@ -65,7 +65,7 @@ int main()
 
     // calcul de la surface avec surface
     cout << "\nCalcul de la surface du polygone 5 sommets (attendu: 0.75) :" << endl;
-    vector<Point2D<double>> listeSommets_5 = {Point2D<double>(0.0, 0.0), Point2D<double>(1.0, 0.0), Point2D<double>(1.0, 1.0), Point2D<double>(0.0, 1.0), Point2D<double>(0.5, 1.5)};
+    vector<Point2D<double>> listeSommets_5 = {Point2D<double>(0.0, 0.0), Point2D<double>(1.0, 0.0), Point2D<double>(1.0, 1.0), Point2D<double>(0.0, 2.0), Point2D<double>(0.0, 1.5)};
     Polygone<double> poly5(listeSommets_5);
     cout << "Sommets du polygone  : ";
     cout << poly5 << endl;
